@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppLoginMapper" >
+
+  <select id="selectAppUser" resultType="com.siruiman.crosslogistics.model.AppUser" parameterType="com.siruiman.crosslogistics.model.dto.AppUserLoginDto">
+    SELECT *
+    FROM app_user
+    WHERE mobile = #{appUserLoginDto.phone}
+  </select>
+
+  <select id="selectAddress" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM app_user_address
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <insert id="insertCode">
+    INSERT INTO
+      smscode(mobile, code, create_at, update_at)
+    VALUES
+      (#{phone}, #{code}, now(), now())
+  </insert>
+
+  <select id="selectCode" resultType="java.lang.String">
+    SELECT code
+    FROM smscode
+    WHERE mobile = #{phone}
+  </select>
+
+  <update id="editCode">
+    UPDATE smscode
+    SET code = #{code}, update_at = now()
+    WHERE mobile = #{phone}
+  </update>
+
+  <update id="editPsw" parameterType="com.siruiman.crosslogistics.model.dto.AppUserLoginDto">
+    UPDATE app_user
+    SET password = #{appUserLoginDto.newPassword}
+    WHERE mobile = #{appUserLoginDto.phone}
+  </update>
+
+  <insert id="addAppUser" parameterType="com.siruiman.crosslogistics.model.dto.AppUserLoginDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="appUserLoginDto.appUserId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      app_user(`number`, mobile, password, add_time)
+    VALUES
+      (#{appUserLoginDto.number},#{appUserLoginDto.phone},#{appUserLoginDto.password},now())
+  </insert>
+
+</mapper>

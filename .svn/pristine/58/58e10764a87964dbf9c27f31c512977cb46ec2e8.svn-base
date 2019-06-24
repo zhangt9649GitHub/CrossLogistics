@@ -1,0 +1,6 @@
+.layui-form-item .layui-input-inline{
+    margin-left: 140px!important;
+}
+.layui-form-pane .layui-form-label{
+    width: 140px!important;
+}

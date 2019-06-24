@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.GoodsPrintFormMapper" >
+
+    <insert id="add" parameterType="com.siruiman.crosslogistics.model.GoodsPrintForm">
+        INSERT INTO `goods_from`(`from_number`,`add_time`,`is_print`)
+        VALUES ( #{form.formNumber},   #{form.addTime}, #{form.printState});
+    </insert>
+
+    <insert id="add2" parameterType="com.siruiman.crosslogistics.model.GoodsPrintForm">
+        INSERT INTO `goods_from`(`from_number`,`driver_name`,`add_time`,`is_print`)
+        VALUES ( #{form.formNumber}, #{form.driverName},  #{form.addTime}, #{form.printState});
+    </insert>
+
+    <select id="selectByNum" parameterType="string" resultType="java.lang.Integer">
+        select `form_id` from `goods_from`
+         where `from_number` =#{formNumber}
+    </select>
+
+
+
+
+
+</mapper>

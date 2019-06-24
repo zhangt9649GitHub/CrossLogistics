@@ -1,0 +1,13 @@
+
+
+
+
+.title h3{
+    text-align: center;
+    font-weight:600;
+    line-height: 1.5;
+}
+.title .border{
+border-bottom: 1px dashed #DCDCDC;
+   margin: 10px 0;
+}

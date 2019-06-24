@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckPersonalOrderMapper" >
+
+  <select id="selectAppTruckOrderAll" resultType="com.siruiman.crosslogistics.model.AppTruckOrder">
+    SELECT task_order_id, app_user_id, order_number, `name` AS orderName, ifnull((money + add_money),money) AS totalMoney, ifnull((integral + add_integral),0) AS totalIntegral,
+            add_money, add_integral, state, DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS createTime
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    <if test="orderStatus != 0">
+      <if test="orderStatus == 1">
+        AND state = 2
+      </if>
+      <if test="orderStatus == 2">
+        AND (state = 3 or state = 4)
+      </if>
+      <if test="orderStatus == 3">
+        AND state = 5
+      </if>
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    <if test="orderStatus != 0">
+      <if test="orderStatus == 1">
+        AND state = 2
+      </if>
+      <if test="orderStatus == 2">
+        AND (state = 3 or state = 4)
+      </if>
+      <if test="orderStatus == 3">
+        AND state = 5
+      </if>
+    </if>
+  </select>
+
+  <select id="selectAppTruckOrderDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderDetails">
+    SELECT a.task_order_id, a.app_user_id, a.order_number, a.`name`, ifnull((a.money + a.add_money),money) AS totalMoney, ifnull((a.integral + a.add_integral),0) AS totalIntegral,
+            a.add_money, a.add_integral, a.state, a.create_time, b.singapore_area_id, b.singapore_area_name
+    FROM task_truck_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE a.state != 5
+    AND a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckTaskRoute" resultType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+    SELECT route_id, status, sort AS sequence
+    FROM task_truck_order_route
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagByTruckOrder" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBag">
+    SELECT b.bag_id, b.bag_number
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBagDetails">
+    SELECT `length`, width, high, load
+    FROM bag
+    WHERE bag_id = #{bagId}
+  </select>
+</mapper>

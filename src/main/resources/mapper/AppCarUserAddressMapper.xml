@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppCarUserAddressMapper" >
+
+  <select id="selectAppUserAddress" resultType="com.siruiman.crosslogistics.model.AppUserAddress">
+    SELECT CONCAT(b.sa_building_name,a.house_number) AS detailedAddress, a.user_address_id, a.name, a.mobile, a.singapore_area_id, b.sa_building_name AS saBuildingAddress, a.house_number, a.zip_code, a.address_default, a.address_type
+    FROM app_user_address a
+    LEFT JOIN singapore_area_building b
+    ON a.zip_code = b.sa_zip_code
+    WHERE app_user_id = #{appUserId}
+    AND status = 1
+  </select>
+
+  <insert id="addAppUserAddress" parameterType="com.siruiman.crosslogistics.model.dto.AddAppUserAdressDto">
+    INSERT INTO
+      app_user_address(app_user_id, `name`, mobile, singapore_area_id, house_number, zip_code, address_type, address_default, add_time)
+    VALUES
+      (#{addAppUserAdressDto.appUserId}, #{addAppUserAdressDto.name}, #{addAppUserAdressDto.mobile}, #{addAppUserAdressDto.singaporeAreaId}, #{addAppUserAdressDto.houseNumber}, #{addAppUserAdressDto.zipCode}, #{addAppUserAdressDto.addressType}, #{addAppUserAdressDto.addressDefault}, now())
+  </insert>
+
+  <select id="selectSingaporeAreaId" resultType="com.siruiman.crosslogistics.model.AppUserAdressArea">
+    SELECT sa_id, sa_building_address
+    FROM singapore_area_building
+    WHERE sa_zip_code = #{zipCode}
+  </select>
+
+  <update id="editAppUserAddress" parameterType="com.siruiman.crosslogistics.model.dto.AddAppUserAdressDto">
+    UPDATE app_user_address
+    SET `name` = #{addAppUserAdressDto.name}, mobile = #{addAppUserAdressDto.mobile}, singapore_area_id = #{addAppUserAdressDto.singaporeAreaId},
+        house_number = #{addAppUserAdressDto.houseNumber}, address_type = #{addAppUserAdressDto.addressType}, zip_code = #{addAppUserAdressDto.zipCode}, address_default = #{addAppUserAdressDto.addressDefault}
+    WHERE user_address_id = #{addAppUserAdressDto.userAddressId}
+  </update>
+
+  <update id="deleteAppUserAddress">
+    UPDATE app_user_address
+    SET status = -1
+    WHERE user_address_id = #{userAddressId}
+  </update>
+
+  <select id="selectDefaultAddressByAppUser" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM app_user_address
+    WHERE app_user_id = #{appUserId}
+    AND `address_default` = 2 AND status = 1
+  </select>
+
+  <select id="selectUserAddressDefault" resultType="java.lang.Integer">
+    SELECT user_address_id
+    FROM app_user_address
+    WHERE app_user_id = #{appUserId}
+    AND `address_default` = 2 AND status = 1
+  </select>
+
+  <update id="editUserAddressDefaultByOne">
+    UPDATE app_user_address
+    SET address_default = 1
+    WHERE user_address_id = #{userAddressId}
+  </update>
+
+  <update id="editUserAddressDefault">
+    UPDATE app_user_address
+    SET address_default = 2
+    WHERE user_address_id = #{userAddressId}
+  </update>
+
+  <select id="selectAppUserAddressById" resultType="com.siruiman.crosslogistics.model.dto.AddAppUserAdressDto">
+    SELECT app_user_id, `name`, mobile, singapore_area_id, house_number, zip_code, address_type, address_default, add_time
+    FROM app_user_address
+    WHERE user_address_id = #{userAddressId}
+  </select>
+
+  <select id="selectAppUserAddressOne" resultType="com.siruiman.crosslogistics.model.dto.AddAppUserAdressDto">
+    SELECT user_address_id,app_user_id, `name`, mobile, singapore_area_id, house_number, zip_code, address_type, address_default, add_time
+    FROM app_user_address
+    WHERE app_user_id = #{appUserId} AND status = 1
+    ORDER BY user_address_id DESC LIMIT 1
+  </select>
+
+
+</mapper>

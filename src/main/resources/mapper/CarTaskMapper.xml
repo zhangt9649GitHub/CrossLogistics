@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.CarTaskMapper" >
+  <select id="selectCarTaskAll" resultType="com.siruiman.crosslogistics.model.CarTask">
+    SELECT a.car_task_id, a.car_task_number, a.car_task_name, a.user_id, d.rally_point_id, d.rally_point_name, b.user_name, a.status, DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime, c.admin_name
+    FROM car_task a
+    LEFT JOIN app_user b
+    ON a.user_id = b.app_user_id
+    LEFT JOIN admin_user c
+    ON a.admin_uid = c.admin_uid
+    LEFT JOIN rally_point d
+    ON a.rally_point_id = d.rally_point_id
+    WHERE a.status != -1
+    <if test="search != null and search != ''">
+      AND CONCAT(IFNULL(a.car_task_name), IFNULL(a.car_task_number)) LIKE '%${search}%'
+    </if>
+    <if test="rallyPointId != 0">
+      AND d.rally_point_id = #{rallyPointId}
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car_task a
+    LEFT JOIN app_user b
+    ON a.user_id = b.app_user_id
+    LEFT JOIN admin_user c
+    ON a.admin_uid = c.admin_uid
+    LEFT JOIN rally_point d
+    ON a.rally_point_id = d.rally_point_id
+    WHERE a.status != -1
+    <if test="search != null and search != ''">
+      AND CONCAT_WS(a.car_task_name, a.car_task_number) LIKE '%${search}%'
+    </if>
+  </select>
+
+  <insert id="addCarTask" parameterType="com.siruiman.crosslogistics.model.dto.AddCarTaskDto">
+    INSERT INTO
+      car_task(car_task_number, car_task_name, user_id, rally_point_id, add_time, admin_uid)
+    VALUES
+      (#{addCarTaskDto.carTaskNumber},#{addCarTaskDto.carTaskName},#{addCarTaskDto.userId},#{addCarTaskDto.rallyPointId},now(),#{addCarTaskDto.adminUid})
+  </insert>
+
+  <select id="selectAppUserByCar" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT app_user_id, user_name
+    FROM app_user
+    WHERE status = '正常'
+    AND car_approve_status = '已认证'
+  </select>
+
+  <select id="selectEditCarTask" resultType="com.siruiman.crosslogistics.model.CarTask">
+    SELECT a.car_task_id, a.car_task_number, a.car_task_name, a.user_id, d.rally_point_id, d.rally_point_number, b.user_name, a.status, DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime, c.admin_name
+    FROM car_task a
+    LEFT JOIN app_user b
+    ON a.user_id = b.app_user_id
+    LEFT JOIN admin_user c
+    ON a.admin_uid = c.admin_uid
+    LEFT JOIN rally_point d
+    ON a.rally_point_id = d.rally_point_id
+    WHERE a.car_task_id = #{carTaskId}
+  </select>
+
+  <update id="editCarTask" parameterType="com.siruiman.crosslogistics.model.CarTask">
+    UPDATE car_task
+    SET car_task_name = #{carTask.carTaskName}, user_id = #{carTask.userId}, rally_point_id = #{carTask.rallyPointId}, update_time = now(), admin_uid = #{carTask.adminUid}
+    WHERE car_task_id = #{carTask.carTaskId}
+  </update>
+
+  <delete id="delCarTask">
+    DELETE FROM car_task
+    WHERE car_task_id = #{carTaskId}
+  </delete>
+
+  <update id="editStatus">
+    UPDATE car_task
+    SET status = #{status}, admin_uid = #{adminUid}
+    WHERE car_task_id = #{carTaskId}
+  </update>
+
+  <select id="selectCarAll" resultType="com.siruiman.crosslogistics.model.Car">
+    SELECT car_id, car_number
+    FROM car
+    WHERE disable_state = 1
+  </select>
+
+  <select id="selectAlreadyAppUser" resultType="java.lang.Integer">
+    SELECT user_id
+    FROM car_task
+    WHERE status != -1
+  </select>
+
+  <select id="selectAlreadyCarId" resultType="java.lang.Integer">
+    SELECT car_id
+    FROM car_task
+    WHERE status != -1
+  </select>
+
+  <!--<select id="selectCarTaskByCarId" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car_task
+    WHERE car_id = #{carId}
+  </select>-->
+
+  <select id="selectCarTaskByCarTaskName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car_task
+    WHERE car_task_name = #{carTaskName}
+  </select>
+
+  <select id="selectRallyPointAll" resultType="com.siruiman.crosslogistics.model.RallyPoint">
+    SELECT rally_point_id, rally_point_name, singapore_area_id
+    FROM rally_point
+    WHERE del_state = 1
+  </select>
+
+  <select id="countRallyPointCarNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car
+    WHERE rally_point_id = #{rallyPointId}
+  </select>
+
+  <select id="countRallyPointCarTaskNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car_task
+    WHERE rally_point_id = #{rallyPointId}
+  </select>
+</mapper>

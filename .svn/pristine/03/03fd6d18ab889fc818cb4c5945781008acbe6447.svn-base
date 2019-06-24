@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.GrabOrderMapper" >
+
+  <update id="carGrab">
+    UPDATE task_car_order
+    SET state = '2'
+    <where>
+      task_order_id IN
+      <foreach item="carOrderId" collection="carOrderIds" separator="," open="(" close=")" index="">
+      #{carOrderId}
+      </foreach>
+    </where>
+  </update>
+
+  <update id="editGrabOrderStatus">
+    UPDATE task_car_order
+    SET app_user_id = #{appUserId}, grab_order_status = '1', grab_order_time = now()
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectCarGrab" resultType="java.lang.Integer">
+    SELECT app_user_id
+    FROM task_car_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckGrab" resultType="java.lang.Integer">
+    SELECT app_user_id
+    FROM task_truck_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <update id="truckGrab">
+    UPDATE task_truck_order
+    SET app_user_id = #{appUserId}, state = '2'
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectCarOrderIds" resultType="java.lang.Integer">
+    SELECT task_order_id
+    FROM task_car_order
+    WHERE date_sub(grab_order_time, interval -1 hour) &lt;= now()
+    AND state = '1'
+  </select>
+
+  <select id="selectCarApproveStatus" resultType="java.lang.String">
+    SELECT car_approve_status
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectTruckApproveStatus" resultType="java.lang.String">
+    SELECT truck_approve_status
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectCarOrderTime" resultType="java.lang.String">
+    SELECT create_time
+    FROM task_car_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectUserTimeIsCarOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+    AND create_time IN (SELECT create_time FROM task_car_order WHERE task_order_id = #{taskOrderId})
+  </select>
+
+  <select id="selectUserTimeIsTruckOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    AND create_time IN (SELECT create_time FROM task_car_order WHERE task_order_id = #{taskOrderId})
+  </select>
+
+  <select id="selectAppUserIdByCarOrder" resultType="java.lang.Integer">
+    SELECT app_user_id
+    FROM task_car_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+</mapper>

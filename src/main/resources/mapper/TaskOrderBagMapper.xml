@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TaskOrderBagMapper" >
+    <resultMap id="BaseResultMap" type="com.siruiman.crosslogistics.model.TaskBagOrder">
+        <id column="order_bag_id" property="orderBagId" jdbcType="INTEGER"/>
+        <result column="bag_id" property="bagId" jdbcType="INTEGER" />
+        <result column="task_order_id" property="taskOrderId" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+    </resultMap>
+
+
+    <insert id="insertTruckBag" >
+        <selectKey resultType="java.lang.Integer" keyProperty="orderBagId" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into task_order_bag(bag_id,task_order_id,`type`)values (#{bagId},#{taskOrderId},2)
+    </insert>
+    <select id="selectBagsBytruckOrderId" resultType="com.siruiman.crosslogistics.model.TaskOrderBag">
+        select order_bag_id,bag_id,task_order_id,`type`
+        FROM task_order_bag where task_order_id = #{taskOrderId} and `type` = 2
+    </select>
+
+    <select id="selectOrderIdByGoodsId" resultType="com.siruiman.crosslogistics.model.TaskBagOrder">
+        select order_bag_id,bag_id,task_order_id,`type`
+        FROM task_order_bag as tob
+        left join goods on (tob.bag_id = goods.bag_id)
+        where goods.goods_id = #{goodsId}
+    </select>
+
+    <select id="selectBagsByOrderId" resultType="com.siruiman.crosslogistics.model.TaskBagOrder">
+        select order_bag_id,bag_id,task_order_id,`type`
+        FROM task_order_bag
+        where task_order_id = #{taskOrderId}
+    </select>
+
+</mapper>

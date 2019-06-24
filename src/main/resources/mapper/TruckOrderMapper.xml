@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckOrderMapper" >
+
+  <select id="selectAppTruckOrderAll" resultType="com.siruiman.crosslogistics.model.AppTruckOrder" parameterType="com.siruiman.crosslogistics.model.dto.TruckOrderDto">
+    SELECT a.task_order_id, a.app_user_id, b.user_name, a.order_number, a.`name` AS orderName, ifnull((a.money + a.add_money),money) AS totalMoney,
+            ifnull((a.integral + a.add_integral),0) AS totalIntegral,a.add_money, a.add_integral, a.state, DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime
+    FROM task_truck_order a
+    LEFT JOIN app_user b
+    ON a.app_user_id = b.app_user_id
+    WHERE 1=1
+    <if test="truckOrderDto.taskOrderStatus == 1">
+      AND a.state = 1
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 2">
+      AND a.state = 2
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 3">
+      AND a.state = 3
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 5">
+      AND a.state = 5
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 7">
+      AND a.state = 7
+    </if>
+    <if test="truckOrderDto.orderNumber != null and truckOrderDto.orderNumber != ''">
+      AND order_number like '%${truckOrderDto.orderNumber}%'
+    </if>
+    <if test="truckOrderDto.singaporeAreaId != 0 and truckOrderDto.singaporeAreaId != null">
+      AND singapore_area_id = #{truckOrderDto.singaporeAreaId}
+    </if>
+    <if test="truckOrderDto.orderTime != null and truckOrderDto.orderTime != ''">
+      AND create_time = #{truckOrderDto.orderTime}
+    </if>
+    ORDER BY create_time DESC
+  </select>
+
+  <select id="countAppTruckOrderAll" resultType="java.lang.Integer" parameterType="com.siruiman.crosslogistics.model.dto.TruckOrderDto">
+    SELECT COUNT(1)
+    FROM task_truck_order a
+    LEFT JOIN app_user b
+    ON a.app_user_id = b.app_user_id
+    WHERE 1=1
+    <if test="truckOrderDto.taskOrderStatus == 1">
+      AND a.state = 1
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 2">
+      AND a.state = 2
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 3">
+      AND a.state = 3
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 5">
+      AND a.state = 5
+    </if>
+    <if test="truckOrderDto.taskOrderStatus == 7">
+      AND a.state = 7
+    </if>
+    <if test="truckOrderDto.orderNumber != null and truckOrderDto.orderNumber != ''">
+      AND order_number like '%${truckOrderDto.orderNumber}%'
+    </if>
+    <if test="truckOrderDto.singaporeAreaId != 0 and truckOrderDto.singaporeAreaId != null">
+      AND singapore_area_id = #{truckOrderDto.singaporeAreaId}
+    </if>
+    <if test="truckOrderDto.orderTime != null and truckOrderDto.orderTime != ''">
+      AND create_time = #{truckOrderDto.orderTime}
+    </if>
+  </select>
+
+  <select id="selectAppTruckOrderDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderDetails">
+    SELECT a.task_order_id, a.app_user_id, a.order_number, a.`name`, (a.money + a.add_money) AS totalMoney, (a.integral + a.add_integral) AS totalIntegral,
+            a.add_money, a.add_integral, a.state, a.create_time, b.singapore_area_id, b.singapore_area_name, b.singapore_area_atitude_longitude
+    FROM task_truck_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE a.state != 5
+    AND a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckTaskRoute" resultType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+    SELECT route_id, status, sort AS sequence
+    FROM task_truck_order_route
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagByTruckOrder" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBag">
+    SELECT b.bag_id, b.bag_number
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBagDetails">
+    SELECT `length`, width, high, load
+    FROM bag
+    WHERE bag_id = #{bagId}
+  </select>
+
+  <select id="selectAppUser" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT a.app_user_id, b.user_name
+    FROM task_truck_order a
+    LEFT JOIN app_user b
+    ON a.app_user_id = b.app_user_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckAppUser" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT app_user_id, user_name
+    FROM app_user
+    WHERE truck_approve_status = '已认证'
+  </select>
+
+  <update id="editTruckOrderDriver">
+    UPDATE task_truck_order
+    SET app_user_id = #{newAppUserId}, state = #{state}
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectCarOrderByTruckUser" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    AND create_time = #{createTime}
+  </select>
+
+  <select id="selectCarOrderTime" resultType="java.lang.String">
+    SELECT create_time
+    FROM task_truck_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+  <select id="getAppUserTruckStatistics" resultType="com.siruiman.crosslogistics.model.AppTruckOrder">
+    SELECT a.task_order_id, a.app_user_id, b.user_name, a.order_number, a.`name` AS orderName, ifnull((a.money + a.add_money),money) AS totalMoney,
+            ifnull((a.integral + a.add_integral),0) AS totalIntegral,a.add_money, a.add_integral, a.state, DATE_FORMAT(a.create_time,'%Y-%m-%d ') AS createTime
+    FROM task_truck_order a
+    LEFT JOIN app_user b
+    ON a.app_user_id = b.app_user_id
+    WHERE a.`state` in (5,7)
+    <if test="appUserId !=null and appUserId !='' ">
+     and a.app_user_id = #{appUserId}
+    </if>
+	<if test="endDate !=null and endDate!= '' and startDate !=null and startDate !='' ">
+      a.create_time BETWEEN #{startDate}and
+      #{endDate}
+    </if>
+      ORDER BY a.app_user_id ASC,a.create_time DESC
+  </select>
+</mapper>

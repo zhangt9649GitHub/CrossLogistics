@@ -1,0 +1,6 @@
+.layui-timeline{
+    max-height: 300px;
+    overflow: auto;
+}
+.layui-timeline::-webkit-scrollbar {display:none}
+

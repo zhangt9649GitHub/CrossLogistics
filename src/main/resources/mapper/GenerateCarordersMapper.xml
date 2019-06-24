@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.GenerateCarordersMapper" >
+
+  <select id="selectCarAll" resultType="com.siruiman.crosslogistics.model.Car">
+    SELECT car_id, car_number
+    FROM car
+    WHERE disable_state = 1
+  </select>
+
+  <select id="selectCarTask" resultType="com.siruiman.crosslogistics.model.CarTask">
+    SELECT car_task_id, car_task_name, user_id
+    FROM car_task
+    WHERE car_id = #{carId}
+  </select>
+
+  <select id="selectRallyPointAndSingaporeArea" resultType="com.siruiman.crosslogistics.model.RallyPointAndSingaporeArea">
+    SELECT b.rally_point_id, b.rally_point_name, c.singapore_area_id, c.singapore_area_name
+    FROM car a
+    LEFT JOIN rally_point b
+    ON a.rally_point_id = b.rally_point_id
+    LEFT JOIN singapore_area c
+    ON a.singapore_area_id = c.singapore_area_id
+    WHERE a.car_id = #{carId}
+  </select>
+
+  <insert id="addCarOrderByTask" parameterType="com.siruiman.crosslogistics.model.dto.AddCarOrderDto">
+    INSERT INTO
+      task_car_order(car_task_id, app_user_id, order_number, `name`, money, state, singapore_area_id, rally_point_id, create_time)
+    VALUES
+      (#{addCarOrderDto.carTaskId}, #{addCarOrderDto.appUserId}, #{addCarOrderDto.orderNumber}, #{addCarOrderDto.name}, #{addCarOrderDto.money}, '2', #{addCarOrderDto.singaporeAreaId}, #{addCarOrderDto.rallyPointId}, #{addCarOrderDto.createTime})
+  </insert>
+
+  <insert id="addCarOrder" parameterType="com.siruiman.crosslogistics.model.dto.AddCarOrderDto">
+    INSERT INTO
+    task_car_order(order_number, `name`, money, state, singapore_area_id, rally_point_id, car_id, create_time)
+    VALUES
+    (#{addCarOrderDto.orderNumber}, #{addCarOrderDto.name}, #{addCarOrderDto.money}, '1', #{addCarOrderDto.singaporeAreaId}, #{addCarOrderDto.rallyPointId}, #{addCarOrderDto.carId}, #{addCarOrderDto.createTime})
+  </insert>
+
+  <select id="countTimeOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE create_time = #{fetureDate}
+    AND car_task_id = #{carTaskId}
+  </select>
+
+  <select id="selectAverageMoney" resultType="java.lang.Double">
+    SELECT AVG(money + add_money)
+    FROM task_car_order
+    WHERE rally_point_id = #{rallyPointId}
+    AND create_time = #{outTime}
+  </select>
+
+  <select id="selectCarOrderUserCar" resultType="com.siruiman.crosslogistics.model.CarOrderUserCar">
+    SELECT task_order_id, app_user_id
+    FROM task_car_order
+    WHERE create_time = #{fetureDate}
+    AND rally_point_id = #{rallyPointId}
+  </select>
+
+  <delete id="delCarOrder">
+    DELETE FROM task_car_order
+    WHERE task_order_id = #{taskOrderId}
+  </delete>
+
+  <select id="selectCarTaskAll" resultType="com.siruiman.crosslogistics.model.CarTask">
+    SELECT a.car_task_id, a.car_task_number, a.user_id, a.car_task_name, b.rally_point_id, b.rally_point_number, c.singapore_area_id, c.singapore_area_name
+    FROM car_task a
+    LEFT JOIN rally_point b
+    ON a.rally_point_id = b.rally_point_id
+    LEFT JOIN singapore_area c
+    ON b.singapore_area_id = c .singapore_area_id
+    WHERE a.status != -1
+    AND a.rally_point_id = #{rallyPointId}
+  </select>
+
+  <select id="countNowCarOrderNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE create_time = #{fetureDate}
+    AND rally_point_id = #{rallyPointId}
+  </select>
+
+  <select id="countRallyPointCarNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM car
+    WHERE rally_point_id = #{rallyPointId}
+  </select>
+
+  <select id="singaporeAreaName" resultType="java.lang.String">
+    SELECT singapore_area_name
+    FROM singapore_area
+    WHERE singapore_area_id = #{singaporeAreaId}
+  </select>
+
+  <select id="selectRallyPointIsCarOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE rally_point_id = #{rallyPointId}
+    AND create_time = #{fetureDate}
+  </select>
+
+  <select id="selectRallyPointCarOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE rally_point_id = #{rallyPointId}
+    AND car_task_id IS NULL
+  </select>
+
+  <select id="selectLastOrderId" resultType="java.lang.Integer">
+    SELECT @@IDENTITY
+  </select>
+
+</mapper>

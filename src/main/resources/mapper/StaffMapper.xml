@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.StaffMapper" >
+
+  <select id="selectStaffAll" parameterType="com.siruiman.crosslogistics.model.dto.StaffDto" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT a.staff_id, b.staff_group_name, a.`number`, a.staff_name, a.head_pic, a.sex, a.born_years, a.age, a.mobile, a.`position`, a.user_name, a.password, a.status, a.add_time,a.attribution
+    FROM staff a
+    LEFT JOIN staff_group b
+    ON a.staff_group_id = b.staff_group_id
+    WHERE status != -1
+    <if test="staffDto.staffGroupId != 0">
+      AND a.staff_group_id = #{staffDto.staffGroupId}
+    </if>
+    <if test="staffDto.search != '' || staffDto.search != null">
+      AND CONCAT_WS(a.number, a.staff_name, a.mobile) LIKE '%${staffDto.search}%'
+    </if>
+  </select>
+
+  <select id="count" parameterType="com.siruiman.crosslogistics.model.dto.StaffDto" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM staff a
+    LEFT JOIN staff_group b
+    ON a.staff_group_id = b.staff_group_id
+    WHERE status != -1
+    <if test="staffDto.staffGroupId != 0">
+      AND a.staff_group_id = #{staffDto.staffGroupId}
+    </if>
+    <if test="staffDto.search != '' || staffDto.search != null">
+      AND CONCAT_WS(a.number, a.staff_name, a.mobile) LIKE '%${staffDto.search}%'
+    </if>
+  </select>
+
+  <insert id="addStaff" parameterType="com.siruiman.crosslogistics.model.Staff">
+    INSERT INTO
+      staff(staff_group_id, `number`, staff_name, head_pic, sex, born_years, age, mobile, `position`, user_name, password, add_time,attribution,warehouse_id)
+    VALUES
+      (#{staff.staffGroupId}, #{staff.number}, #{staff.staffName}, #{staff.headPic}, #{staff.sex},
+      #{staff.bornYears}, #{staff.age}, #{staff.mobile}, #{staff.position}, #{staff.userName}, #{staff.password}, now(),#{staff.attribution},#{staff.warehouseId})
+  </insert>
+
+  <select id="selectStaffDetail" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT b.staff_group_name, a.`number`, a.staff_name, a.head_pic, a.sex, a.born_years, a.age, a.mobile, a.`position`, a.user_name, a.password,a.attribution,a.warehouse_id
+    FROM staff a
+    LEFT JOIN staff_group b
+    ON a.staff_group_id = b.staff_group_id
+    WHERE a.staff_id = #{staffId}
+  </select>
+
+  <select id="selectStaffAccessAll" resultType="com.siruiman.crosslogistics.model.StaffAccess">
+    SELECT *
+    FROM staff_access
+  </select>
+
+  <select id="selectEeditStaff" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT a.staff_group_id, a.`number`, a.staff_name, a.head_pic, a.sex, a.born_years, a.age, a.mobile, a.`position`, a.user_name, a.password,a.attribution,a.warehouse_id
+    FROM staff a
+    LEFT JOIN staff_group b
+    ON a.staff_group_id = b.staff_group_id
+    WHERE a.staff_id = #{staffId}
+  </select>
+
+  <update id="editStaff" parameterType="com.siruiman.crosslogistics.model.Staff">
+    UPDATE staff
+    SET staff_group_id = #{staff.staffGroupId}, staff_name = #{staff.staffName}, head_pic = #{staff.headPic}, sex = #{staff.sex},born_years = #{staff.bornYears},
+        age = #{staff.age}, mobile = #{staff.mobile}, `position` = #{staff.position}, mobile = #{staff.mobile}, password = #{staff.newPassword}, operating_time = now(),attribution = #{staff.attribution},
+        warehouse_id = #{staff.warehouseId}
+    WHERE staff_id = #{staff.staffId}
+  </update>
+
+  <select id="selectStaffPsw" resultType="java.lang.String">
+    SELECT password
+    FROM staff
+    WHERE staff_id = #{staffId}
+  </select>
+
+  <update id="deleteStaff">
+    UPDATE staff
+    SET status = -1
+    WHERE staff_id = #{staffId}
+  </update>
+
+  <update id="editStaffStatus">
+    UPDATE staff
+    SET status = #{status}
+    WHERE staff_id = #{staffId}
+  </update>
+
+  <select id="checkUserName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM staff
+    WHERE user_name = #{userName}
+  </select>
+
+  <select id="selectStaffbyNumber" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT staff_id,`number`,staff_name
+    FROM staff
+    WHERE `number` = #{number} AND staff_name = #{staffName}
+  </select>
+
+  <select id="selectLogisticInfoByStaff" resultType="com.siruiman.crosslogistics.model.LogInfo">
+    SELECT a.logistic_info_id, DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime, b.delivery_number, c.bag_number, a.operate_result,
+            a.operate_type, a.operate_comment, a.parameter, a.operate_name, a.staff_id
+    FROM logistic_info a
+    LEFT JOIN goods b
+    ON a.goods_id = b.goods_id
+    LEFT JOIN bag c
+    ON a.bag_id = c.bag_id
+    WHERE a.staff_id = #{staffId}
+  </select>
+
+  <select id="selectMonthAll" resultType="java.lang.String">
+    select date_format(curdate(),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 1 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 2 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 3 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 4 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 5 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 6 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 7 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 8 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 9 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 10 month),'%Y-%m') AS `month` union
+    select date_format((curdate() - interval 11 month),'%Y-%m') AS `month`
+  </select>
+
+  <select id="countLogisticInfoByStaff" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM logistic_info a
+    LEFT JOIN goods b
+    ON a.goods_id = b.goods_id
+    LEFT JOIN bag c
+    ON a.bag_id = c.bag_id
+    WHERE a.staff_id = #{staffId}
+  </select>
+
+  <select id="selectStaffGroupAll" resultType="com.siruiman.crosslogistics.model.StaffGroupAccess">
+    SELECT staff_group_id, staff_group_name
+    FROM staff_group
+  </select>
+
+  <select id="selectStaffUserName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM staff
+    WHERE user_name = #{userName}
+    AND status != '-1'
+  </select>
+
+  <select id="selectStaffList" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT staff_id,staff_name
+    FROM staff where status = 1
+  </select>
+
+</mapper>

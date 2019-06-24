@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppPersonalCenterMapper" >
+
+  <select id="selectAppUserInfo" resultType="com.siruiman.crosslogistics.model.AppUserInfo">
+    SELECT a.app_user_id, a.number, a.user_name, a.head_pic, a.age, a.sex, a.mobile, a.zip_code, a.car_approve_status, a.truck_approve_status, b.commission_amount, b.integral
+    FROM app_user a
+    LEFT JOIN app_user_wallet b
+    ON a.app_user_id = b.app_user_id
+    WHERE a.app_user_id = #{appUserId}
+    AND b.user_type = #{userType}
+  </select>
+
+  <select id="selectAppUserInfoByPt" resultType="com.siruiman.crosslogistics.model.AppUserInfo">
+    SELECT app_user_id, `number`, user_name, head_pic, age, sex, mobile, zip_code, car_approve_status, truck_approve_status
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <update id="editAppUserInfo" parameterType="com.siruiman.crosslogistics.model.AppUserInfo">
+    UPDATE app_user
+    SET user_name = #{appUserInfo.userName}, head_pic = #{appUserInfo.headPic}, age = #{appUserInfo.age}, sex = #{appUserInfo.sex}
+    WHERE app_user_id = #{appUserInfo.appUserId}
+  </update>
+
+  <select id="selectSingaporeAreaBuilding" resultType="com.siruiman.crosslogistics.model.SingaporeAreaBuilding">
+    SELECT sa_building_lat, sa_building_lng
+    FROM singapore_area_building
+    WHERE sa_zip_code = #{zipCode}
+  </select>
+</mapper>

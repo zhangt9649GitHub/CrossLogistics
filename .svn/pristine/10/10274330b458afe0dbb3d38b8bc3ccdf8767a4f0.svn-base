@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.GoodsPrintFormMidMapper" >
+
+    <insert id="add" parameterType="com.siruiman.crosslogistics.model.GoodsPrintFormMid">
+        INSERT INTO `goods_from_associated`(`goods_id`,`form_id`)
+        VALUES ( #{form.goodsId},  #{form.formId});
+    </insert>
+
+
+
+
+
+
+
+</mapper>

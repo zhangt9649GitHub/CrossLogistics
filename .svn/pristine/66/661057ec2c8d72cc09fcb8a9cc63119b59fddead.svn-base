@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppUserAddressMapper" >
+
+  <select id="selectAppUserAddressAll" resultType="com.siruiman.crosslogistics.model.AppUserAddress" parameterType="com.siruiman.crosslogistics.model.dto.AppUserAddressDto">
+    SELECT a.user_address_id, a.app_user_id, a.name, a.mobile, a.singapore_area_id, b.singapore_area_name, a.house_number, a.zip_code,
+            DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime, address_type
+    FROM app_user_address a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE a.status = 1
+    <if test="appUserAddressDto.search != null and appUserAddressDto.search != ''">
+      AND CONCAT_WS(a.name, a.mobile, a.zip_cod) like '%${appUserAddressDto.search}%'
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM app_user_address a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE a.status = 1
+    <if test="appUserAddressDto.search != null and appUserAddressDto.search != ''">
+      AND CONCAT_WS(a.name, a.mobile, a.zip_cod) like '%${appUserAddressDto.search}%'
+    </if>
+  </select>
+
+  <select id="selectAppUserAdressAreaAll" resultType="com.siruiman.crosslogistics.model.SingaporeArea">
+    SELECT singapore_area_id, singapore_area_name
+    FROM singapore_area
+  </select>
+
+  <select id="selectAppUserAddressByAppUserId" resultType="com.siruiman.crosslogistics.model.AppUserAddress" parameterType="java.lang.Integer">
+   SELECT aua.user_address_id,aua.app_user_id,aua.`name`,aua.mobile,aua.singapore_area_id,
+   aua.house_number,aua.zip_code,aua.status,aua.add_time,sab.sa_building_address,aua.address_type,address_default
+    FROM app_user_address AS aua
+    LEFT JOIN singapore_area_building AS sab ON (aua.zip_code = sab.sa_zip_code)
+    WHERE app_user_id = #{appUserId} AND aua.status = 1
+  </select>
+
+  <select id="selectAppUserNameByUId" parameterType="integer" resultType="string">
+    select `name` from app_user_address where app_user_id = #{appUserId} limit 1
+  </select>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckContactAddressMapper" >
+
+  <select id="selectTruckContactAddress" resultType="com.siruiman.crosslogistics.model.TruckContactAddress">
+    SELECT actual_name, mobile, zip_code, address, house_number, address_type
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectAddress" resultType="java.lang.String">
+    SELECT sa_building_name
+    FROM singapore_area_building
+    WHERE sa_zip_code = #{zipCode}
+  </select>
+
+  <update id="editTruckAddress" parameterType="com.siruiman.crosslogistics.model.TruckContactAddress">
+    UPDATE app_user
+    SET actual_name = #{truckContactAddress.actualName}, address = #{truckContactAddress.address}, zip_code = #{truckContactAddress.zipCode}, house_number = #{truckContactAddress.houseNumber}, address_type = #{truckContactAddress.addressType}
+    WHERE app_user_id = #{truckContactAddress.appUserId}
+  </update>
+</mapper>

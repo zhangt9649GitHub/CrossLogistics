@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckTaskMapper" >
+  <select id="selectTruckTaskAll" resultType="com.siruiman.crosslogistics.model.TruckTask">
+    SELECT a.truck_task_id, a.truck_task_number, a.truck_task_name, a.truck_driver_id, a.status, DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime, b.admin_name
+    FROM truck_task a
+    LEFT JOIN admin_user b
+    ON a.admin_uid = b.admin_uid
+    WHERE a.status != -1
+    <if test="search != null and search != ''">
+      AND CONCAT(IFNULL(a.truck_task_name), IFNULL(a.truck_task_number)) LIKE '%${search}%'
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM truck_task a
+    LEFT JOIN admin_user b
+    ON a.admin_uid = b.admin_uid
+    WHERE a.status != -1
+    <if test="search != null and search != ''">
+      AND CONCAT_WS(a.truck_task_name, a.truck_task_number) LIKE '%${search}%'
+    </if>
+  </select>
+
+  <insert id="addTruckTask" parameterType="com.siruiman.crosslogistics.model.dto.TruckTaskDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="truckTaskDto.truckTaskId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      truck_task(truck_task_number, truck_task_name, truck_driver_id, singapore_area_id, lat_lng, add_time, admin_uid)
+    VALUES
+      (#{truckTaskDto.truckTaskNumber}, #{truckTaskDto.truckTaskName}, #{truckTaskDto.truckDriverId}, #{truckTaskDto.singaporeAreaId}, #{truckTaskDto.latLng}, now(), #{truckTaskDto.adminId})
+  </insert>
+
+  <insert id="addTruckTaskRoute" parameterType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+    INSERT INTO
+      truck_task_route(truck_task_id, route_id, status, sort)
+    VALUES
+      (#{truckTaskId}, #{truckTaskRouteDto.routeId}, #{truckTaskRouteDto.status}, #{truckTaskRouteDto.sort})
+  </insert>
+
+  <select id="selectSingaporeAreaAll" resultType="com.siruiman.crosslogistics.model.SingaporeArea">
+    SELECT singapore_area_id, singapore_area_name
+    FROM singapore_area
+    WHERE del_state = 1
+  </select>
+
+  <select id="selectRallyPointBySA" resultType="com.siruiman.crosslogistics.model.RallyPoint">
+    SELECT rally_point_id, rally_point_name, rally_point_address, rally_point_lat, rally_point_lng
+    FROM rally_point
+    WHERE del_state = 1
+    AND singapore_area_id = #{singaporeAreaId}
+  </select>
+
+  <select id="selectAppUserByTruck" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT app_user_id, user_name
+    FROM app_user
+    WHERE status = '正常'
+    AND truck_approve_status = '已认证'
+  </select>
+
+  <select id="selectWarehouseAll" resultType="com.siruiman.crosslogistics.model.Warehouse">
+    SELECT warehouse_id, warehouse_name, warehouse_lat, warehouse_lng
+    FROM warehouse
+    WHERE del_state = 1
+  </select>
+
+  <update id="deleteTruckTask">
+    UPDATE truck_task
+    SET status = -1
+    WHERE truck_task_id = #{truckTaskId}
+  </update>
+
+  <select id="selectTruckTaskDetails" resultType="com.siruiman.crosslogistics.model.TruckTaskDetails">
+    SELECT a.truck_task_number, a.truck_task_name, a.truck_driver_id, a.status, DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime, b.admin_name
+    FROM truck_task a
+    LEFT JOIN admin_user b
+    ON a.admin_uid = b.admin_uid
+    WHERE a.truck_task_id = #{truckTaskId}
+  </select>
+
+  <select id="selectUserName" resultType="java.lang.String">
+    SELECT user_name
+    FROM app_user
+    WHERE app_user_id = #{driverId}
+  </select>
+
+  <select id="selectTruckTaskRoute" resultType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+    SELECT route_id, status, sort
+    FROM truck_task_route
+    WHERE truck_task_id = #{truckTaskId}
+  </select>
+
+  <select id="selectTruckTaskRouteByCar" resultType="com.siruiman.crosslogistics.model.TruckTaskRoute">
+    SELECT rally_point_address AS routeName, rally_point_lat, rally_point_lng
+    FROM rally_point
+    WHERE rally_point_id = #{routeId}
+  </select>
+
+  <select id="selectTruckTaskRouteByWarehouse" resultType="com.siruiman.crosslogistics.model.TruckTaskRoute">
+    SELECT warehouse_name AS routeName, warehouse_lat AS rallyPointLat, warehouse_lng AS rallyPointLng
+    FROM warehouse
+    WHERE warehouse_id = #{routeId}
+  </select>
+
+  <update id="editTruckTaskStatus">
+    UPDATE truck_task
+    SET status = #{status}
+    WHERE truck_task_id = #{truckTaskId}
+  </update>
+
+
+  <resultMap id="editTruckTask" type="com.siruiman.crosslogistics.model.EditTruckTask">
+    <result column="truck_task_number" jdbcType="VARCHAR" property="truckTaskNumber"/>
+    <result column="truck_task_name" jdbcType="VARCHAR" property="truckTaskName"/>
+    <result column="truck_driver_id" jdbcType="VARCHAR" property="truckDriverId"/>
+    <result column="singapore_area_id" jdbcType="INTEGER" property="singaporeAreaId"/>
+    <result column="status" jdbcType="INTEGER" property="status"/>
+    <result column="addTime" jdbcType="VARCHAR" property="addTime"/>
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName"/>
+    <collection property="truckTaskRoutes" ofType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+      <result column="route_id" jdbcType="INTEGER" property="routeId"/>
+      <result column="status" jdbcType="INTEGER" property="status"/>
+      <result column="sort" jdbcType="INTEGER" property="sort"/>
+    </collection>
+  </resultMap>
+  <select id="selectEditTruckTask" resultMap="editTruckTask">
+    SELECT a.truck_task_number, a.truck_task_name, a.truck_driver_id, a.singapore_area_id, a.status,
+            DATE_FORMAT(a.add_time,'%Y-%m-%d %H:%i:%s') AS addTime,b.admin_name, c.route_id, c.status, c.sort
+    FROM truck_task a
+    LEFT JOIN admin_user b
+    ON a.admin_uid = b.admin_uid
+    LEFT JOIN truck_task_route c
+    ON a.truck_task_id = c.truck_task_id
+    WHERE a.truck_task_id = #{truckTaskId}
+  </select>
+
+  <update id="editTruckTask" parameterType="com.siruiman.crosslogistics.model.dto.EditTruckTaskDto">
+    UPDATE truck_task
+    SET truck_task_name = #{editTruckTaskDto.truckTaskName}, truck_driver_id = #{editTruckTaskDto.truckDriverId}, singapore_area_id = #{editTruckTaskDto.singaporeAreaId},
+        lat_lng = #{editTruckTaskDto.latLng}, update_time = now(), admin_uid = #{editTruckTaskDto.adminId}
+    WHERE truck_task_id = #{editTruckTaskDto.truckTaskId}
+  </update>
+
+  <delete id="delTruckTaskRoute">
+    DELETE FROM truck_task_route
+    WHERE truck_task_id = #{truckTaskId}
+  </delete>
+
+  <select id="selectTruckTaskByTruckTaskName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM truck_task
+    WHERE truck_task_name = #{truckTaskName}
+  </select>
+
+  <select id="selectSingaporeAreaById" resultType="com.siruiman.crosslogistics.model.dto.TruckTaskDto">
+    SELECT truck_driver_id,singapore_area_id,status
+    FROM truck_task
+    WHERE truck_task_id = #{truckTaskId}
+  </select>
+
+  <select id="driverName" resultType="java.lang.String">
+    SELECT user_name
+    FROM app_user
+    WHERE app_user_id = #{truckDriverId}
+  </select>
+</mapper>

@@ -1,0 +1,50 @@
+
+
+/* 个人信息 start */
+
+.inner{
+	border-bottom: 1px solid #E9E9E9;
+	padding-bottom: 15px;
+	display: flex;
+}
+
+.inner .img{
+	width: 180px;
+	height:180px;
+	margin-right: 20px;
+}
+.inner .img img{
+	width: 100%;
+}
+.inner  .info{
+	flex: 1;
+}
+.inner .up{
+	border-bottom: 1px solid #E9E9E9;
+}
+.inner .up td{
+	padding:5px 0;
+}
+
+.inner .up .name{
+	font-weight: 700;
+	font-size: 18px;
+	color:#666666;
+}
+.inner .up .userid{
+	color:#999;
+}
+.inner .down .layui-row{
+	line-height: 40px;
+}
+/* 个人信息 end */
+
+/* 选项卡 start */
+
+.open-tab{
+	margin-top: 50px;
+}
+.open-tab .layui-tab-content{
+	height: auto;
+}
+/* 选项卡 end */

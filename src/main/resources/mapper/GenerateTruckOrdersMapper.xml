@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.GenerateTruckOrdersMapper" >
+
+  <select id="countTimeTruckOrder" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE create_time = #{fetureDate}
+    AND truck_task_id = #{truckTaskId}
+  </select>
+
+  <resultMap id="generateTruckOrder" type="com.siruiman.crosslogistics.model.GenerateTruckOrder">
+    <id column="truck_task_id" jdbcType="INTEGER" property="truckTaskId" />
+    <result column="truck_task_name" jdbcType="VARCHAR" property="truckTaskName"/>
+    <result column="truck_driver_id" jdbcType="VARCHAR" property="truckDriverId"/>
+    <result column="singapore_area_id" jdbcType="INTEGER" property="singaporeAreaId"/>
+    <result column="singapore_area_name" jdbcType="VARCHAR" property="singaporeAreaName"/>
+    <collection property="generateTruckOrderRoutes" ofType="com.siruiman.crosslogistics.model.GenerateTruckOrderRoute">
+      <id column="truck_task_route_id" jdbcType="INTEGER" property="truckTaskRouteId" />
+      <result column="route_id" jdbcType="INTEGER" property="routeId"/>
+      <result column="status" jdbcType="INTEGER" property="status"/>
+      <result column="sort" jdbcType="INTEGER" property="sort"/>
+    </collection>
+  </resultMap>
+  <select id="selectGenerateTruckOrderAll" resultMap="generateTruckOrder">
+    SELECT a.truck_task_id, a.truck_task_name, a.truck_driver_id, c.singapore_area_id, c.singapore_area_name, b.truck_task_route_id, b.route_id, b.status, b.sort
+    FROM truck_task a
+    LEFT JOIN truck_task_route b
+    ON a.truck_task_id = b.truck_task_id
+    LEFT JOIN singapore_area c
+    ON a.singapore_area_id = c.singapore_area_id
+    WHERE a.status = 1
+  </select>
+
+  <insert id="addTruckOrderByDriver" parameterType="com.siruiman.crosslogistics.model.dto.AddTruckOrderDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="addTruckOrderDto.taskOrderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      task_truck_order(truck_task_id, app_user_id, order_number, `name`, money, state, singapore_area_id, create_time)
+    VALUES
+      (#{addTruckOrderDto.truckTaskId}, #{addTruckOrderDto.appUserId}, #{addTruckOrderDto.orderNumber}, #{addTruckOrderDto.name}, #{addTruckOrderDto.money}, #{addTruckOrderDto.state}, #{addTruckOrderDto.singaporeAreaId}, #{addTruckOrderDto.createTime})
+  </insert>
+
+  <insert id="addTruckOrder" parameterType="com.siruiman.crosslogistics.model.dto.AddTruckOrderDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="addTruckOrderDto.taskOrderId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      task_truck_order(truck_task_id, order_number, `name`, money, state, singapore_area_id, create_time)
+    VALUES
+      (#{addTruckOrderDto.truckTaskId}, #{addTruckOrderDto.orderNumber}, #{addTruckOrderDto.name}, #{addTruckOrderDto.money}, #{addTruckOrderDto.state}, #{addTruckOrderDto.singaporeAreaId}, #{addTruckOrderDto.createTime})
+  </insert>
+
+  <insert id="addTruckOrderRoute" parameterType="com.siruiman.crosslogistics.model.dto.AddTruckOrderRouteDto">
+    INSERT INTO
+      task_truck_order_route(task_order_id, route_id, status, sequence)
+    VALUES
+      (#{addTruckOrderRouteDto.taskOrderId}, #{addTruckOrderRouteDto.routeId}, #{addTruckOrderRouteDto.status}, #{addTruckOrderRouteDto.sequence})
+  </insert>
+
+  <select id="selectAverageMoney" resultType="java.lang.Double">
+    SELECT AVG(money + add_money)
+    FROM task_truck_order
+    WHERE singapore_area_id = #{singaporeAreaId}
+  </select>
+</mapper>

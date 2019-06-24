@@ -1,0 +1,449 @@
+
+/*  */
+
+.layui-form-selected dl{
+    z-index: 999999;
+}
+/* 询问层 start */
+.zq-form-confirm .layui-input-inline{
+    display: block;
+    float: none;
+    left: -3px;
+    width: auto;
+    margin: 0 0 10px 112px;
+}
+.zq-form-confirm .zq-title{
+    font-size: 22px;
+}
+
+/* 询问层 end */
+
+/* 刷新 start*/
+
+.zq-bodybagcolor{
+    background: #f2f2f2;
+    padding: 15px;
+}
+.zq-nav{
+	padding: 0 20px;
+    position: relative;
+    z-index: 99;
+    border-bottom: 1px solid #e5e5e5;
+    overflow: hidden;
+    background: #fff;
+}
+.zq-nav .right{
+	float: right
+}
+
+/* 刷新 end*/
+
+/* 内容 start */
+
+.zq-body{
+	padding: 20px;
+    background: #fff;
+}
+
+/* 查询页 */
+.zq-query-body{
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.zq-query-body .layui-input-inline{
+    display: block;
+    float: none;
+    left: -3px;
+    width: auto;
+    margin: 0 0 10px 112px;
+}
+.zq-query-form:after{
+    display: block; /*设置为块级元素，如果是行内元素，则不起作用 */
+    clear: both; /*清除浮动*/
+    content: '.'; /*内容随便拉拉*/
+    visibility: hidden; /*设置为隐藏*/
+    height: 0;
+}
+.zq-query-form{
+    margin-top: 40px;
+}
+.zq-query-form .layui-form-label{
+    width: 210px;
+}
+.zq-query-form .layui-input-inline{
+    margin: 0 0 10px 210px
+}
+.zq-query{
+
+    border-bottom:1px solid #e5e5e5;
+    margin: 0 -20px 10px -20px;
+    padding:0 20px ;
+}
+/* 操作按钮 start*/
+
+.zq-actionbuttons{
+	display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    line-height: 22px;
+    border-radius: 0 2px 2px 0;
+}
+
+/* 操作按钮 end */
+
+
+
+/* 内容 end */
+
+
+/* 数据表格操作按钮 start */
+
+.zq-btn-edit{
+	padding: 5px 15px;
+    border: 1px solid #36a9cf;
+    border-radius: 5px;
+    color: #36a9cf;
+    cursor:pointer;
+}
+
+.zq-btn-delete{
+	padding: 5px 15px;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+    cursor:pointer;
+}
+.zq-btn-open{
+    padding: 5px 15px;
+    border: 1px solid #FFB800;
+    border-radius: 5px;
+    color: #FFB800;
+    cursor:pointer;
+
+}
+.zq-btn-disabled{
+      padding: 5px 15px;
+      border: 1px solid #999;
+      border-radius: 5px;
+      color: #999;
+      cursor:pointer;
+}
+.zq-btn-startusing {
+    padding: 5px 15px;
+    border: 1px solid #FF5722;
+    border-radius: 5px;
+    color: #FF5722;
+    cursor:pointer;
+}
+
+.zq-btn-assignCar{
+    padding: 5px 15px;
+    border: 1px solid #F19951;
+    border-radius: 5px;
+    color: #F19951;
+    cursor:pointer;
+}
+
+.zq-btn-assign{
+    padding: 5px 15px;
+    border: 1px solid #36a9cf;
+    border-radius: 5px;
+    color: #36a9cf;
+    cursor:pointer;
+}
+
+.zq-img-height{
+    height: 100%;
+}
+/* 数据表格操作按钮 end */
+
+
+/* 添加页面排版 start */
+.zq-form:after{
+    display: block; /*设置为块级元素，如果是行内元素，则不起作用 */
+    clear: both; /*清除浮动*/
+    content: '.'; /*内容随便拉拉*/
+    visibility: hidden; /*设置为隐藏*/
+    height: 0; 
+}
+.zq-form{
+    margin-bottom: 60px;
+    margin-top: 40px;
+}
+
+.zq-body .zq-form .layui-col-md6{
+    height: 38px!important;
+}
+
+.zq-col-left{
+    text-align: right;
+    line-height: 38px;
+    padding-right:15px;
+    box-sizing: border-box; 
+}
+.zq-col-left b{
+    color:red;
+    font-size: 18px;
+}
+.zq-col-left p{
+    color: red;
+    margin-left: 10px;
+    float: right;
+}
+.zq-col-bottom{
+    margin-bottom: 25px;
+}
+
+.zq-submit{
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 99999;
+    background: #fff;
+}
+/* 添加页面排版 end */
+
+
+/* 单张图片上传 start */
+
+.zq-div-img{
+    /*border: 2px dashed #E7E6E6;*/
+}
+
+.zq-div-img:after{
+    display: block; /*设置为块级元素，如果是行内元素，则不起作用 */
+    clear: both; /*清除浮动*/
+    content: '.'; /*内容随便拉拉*/
+    visibility: hidden; /*设置为隐藏*/
+    height: 0; 
+}
+.zq-div-img .zq-domt{
+    width: 120px;
+    height: 120px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.zq-div-img .zq-file{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 999;
+}
+.zq-div-img img{
+    width: 120px;
+    height: 120px;
+}
+
+/* 单张图片上传 end */
+
+
+/* 百度地图 start */
+
+.zq-baidu-maps{
+    /*width: 100%;*/
+    height: 600px;
+    font-family:"微软雅黑";
+    position: relative;
+}
+.zq-baidu-maps .section-bdmap{
+    position: absolute;
+}
+.zq-baidu-maps #allmap{
+    height:100%;
+    width:100%;
+}
+
+.zq-baidu-maps #r-result{
+    width:100%;
+}
+
+.zq-baidu-maps .map-search{
+    padding:15px;
+}
+
+.zq-baidu-maps input[type="text"]{
+    width:auto;
+    height:26px;
+    line-height:26px;
+    padding:0 5px;
+    border-radius:3px;
+    border:1px solid #ddd;
+}
+.zq-baidu-maps .b_copyright{
+    display: none;
+}
+/* 百度地图 end */
+
+
+
+/* 查看样式 start*/
+
+.zq-main{
+    border:1px solid #e6e6e6;
+}
+
+.zq-main .title{
+    font-weight: 600;
+    color:#5A5A5A;
+    font-size:18px;
+    padding:10px 10px;
+}
+.zq-main hr{
+    margin: 0;
+}
+
+
+.zq-main .content{
+    /*margin: 10px 10px;*/
+    padding: 10px;
+}
+
+.zq-main .content .layui-row{
+    padding: 10px 0px;
+    /*line-height: 35px*/
+}
+.zq-main .content  .inline{
+    display: inline;
+}
+.zq-main .content .table{
+    /*padding: 10px;*/
+}
+/* 查看样式 end */
+
+
+/* 物流进程图 start */
+
+.zq-logistics-process{
+    display: flex;
+    width: 90%;
+    margin:0 auto;
+    text-align: center;
+}
+.zq-logistics-process .item{
+    flex: 1;
+}
+.zq-logistics-process .step-no{
+    background: url('../image/T1ze0ZXA0aXXcVlxZa-734-340.png') 50% -102px no-repeat;
+    height: 34px;
+    line-height: 34px;
+    font-family: 'arial black';
+    color: #fff;
+    font-size: 18px;    
+}
+
+/*第一步完成并且第二步完成*/
+.zq-logistics-process .step-first .step-done .step-no{
+    background-position: 50% -204px;
+}
+/*第一步完成*/
+.zq-logistics-process .step-first .step-cur .step-no{
+    background-position: 50% -34px;
+}
+
+/* 最后一步未完成 */
+.zq-logistics-process .step-last .step-no{
+    background-position: 50% -136px;
+}
+/* 最后一步完成 */
+.zq-logistics-process .step-last .step-done .step-no{
+    background-position: 50% -68px;
+}
+
+/* 步骤完成 */
+.zq-logistics-process .step-done .step-no{
+    background-position: 50% -170px;
+}
+
+/*捷越*/
+.zq-logistics-process .step-cur .step-no{
+    background-position: 50% 0px;
+}  
+
+/*描述*/
+.zq-logistics-process .step-describe{
+    margin-top: 10px;
+    color: #999;
+    padding: 8px 5px;
+}
+/* 物流进程图 end */
+
+
+/* 谷歌地图 start */
+.zq-google-map{
+    height: 600px;
+    font-family:"微软雅黑";
+    position: relative;
+
+}
+.zq-google-map #map{
+    height:100%;
+}
+.zq-google-map .zq-google-section{
+    position: absolute;
+    width: 60%;
+    text-align: center;
+    top:0px;
+    left:25%;
+}
+.zq-google-map .zq-google-search{
+    display: inline-block;
+    width: auto;
+    /* max-width: 50%; */
+    padding: 10px;
+    margin: 5px auto 0 auto;
+    border-radius: 3px;
+    background-color: rgba(255,255,255,1);
+    box-shadow: 1px 2px 8px rgba(0,0,0,.35);
+    cursor:pointer;
+}
+
+
+.zq-google-map input[type="text"] {
+    width: auto;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 5px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+.zq-google-map input[type="text"] {
+    border-color: #A5DE37;
+}
+/* 谷歌地图 end */
+
+
+/* 禁止点击事件 start */
+.zq-submit-disabled{
+    pointer-events: none;
+}
+/* 禁止点击事件 end */
+
+
+/* 没有权限页面 start */
+.za-tips{
+    text-align: center;
+    margin-top: 40px;
+}
+.za-tips .layui-icon{
+    display: inline-block;
+    font-size: 300px;
+    color: #393D49;
+}
+.za-tips .text{
+    width: 500px;
+    margin: 30px auto;
+    padding-top: 20px;
+    border-top: 5px solid #009688;
+    font-size: 20px;
+    line-height: 22px;
+    color: #666;
+}
+
+/* 没有权限页面 end */

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.PDAUserMapper" >
+
+  <select id="selectStaff" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT `number`, staff_name, head_pic, sex, born_years, age, mobile, `position`
+    FROM staff
+    WHERE staff_id = #{staffId}
+  </select>
+
+  <update id="editStaffPsw" parameterType="com.siruiman.crosslogistics.model.dto.EditPDAUserPswDto">
+    UPDATE staff
+    SET password = #{editPDAUserPswDto.newPassword}
+    WHERE staff_id = #{editPDAUserPswDto.staffId}
+  </update>
+
+  <select id="selPsw" resultType="java.lang.String">
+    SELECT password
+    FROM staff
+    WHERE staff_id = #{staffId}
+  </select>
+</mapper>

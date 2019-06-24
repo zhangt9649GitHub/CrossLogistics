@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckDriverOrderMapper" >
+
+
+    <!--todo 修改货袋操作-->
+    <select id="selectByUserId" resultType="com.siruiman.crosslogistics.model.dto.TruckDriverOrder">
+       SELECT
+            tto.app_user_id as appUserId,
+            tto.task_order_id AS taskOrderId,
+	        tto.order_number AS orderNumber,
+	        auc.user_true_name  as userTrueName,
+	        auc.license_plate as licensePlate,
+	        au.mobile as mobile ,
+	        tto.order_type as orderType
+        FROM task_truck_order AS tto
+        LEFT JOIN app_user_certification AS auc ON auc.app_user_id = tto.app_user_id
+        LEFT JOIN app_user AS au ON au.app_user_id = tto.app_user_id
+        WHERE tto.create_time LIKE #{date}"%"
+        AND tto.app_user_id = #{appUserId}
+        AND tto.`state` = 3
+        AND auc.user_certification_status = '已通过'
+        AND auc.user_type = "货车"
+        LIMIT 1
+    </select>
+
+    <select id="selectTruckOrderIdByUId" resultType="java.lang.Integer">
+        select task_order_id from task_truck_order
+        where app_user_id =#{appUserId,jdbcType=INTEGER}
+        and create_time like #{date}"%"
+    </select>
+
+
+
+    <update id="updateTruckOrderState" parameterType="com.siruiman.crosslogistics.model.dto.TruckDriverOrder">
+        update task_truck_order
+        set
+        `state` =#{state}
+        where task_order_id =#{taskOrderId}
+    </update>
+
+    <select id="selectRallyPointIds" parameterType="int" resultType="java.lang.Integer">
+        SELECT route_id FROM task_truck_order_route
+        WHERE task_order_id =#{taskOrderId}
+        AND `status` = 1
+    </select>
+    <select id="selectCountOrderByTime" resultType="int">
+        SELECT COUNT(task_order_id) FROM task_truck_order
+        WHERE create_time LIKE #{date}"%"
+    </select>
+
+    <select id="selectCountFinishOrderByTime" resultType="int">
+        SELECT COUNT(task_order_id) FROM task_truck_order
+        WHERE create_time LIKE #{date}"%" AND `state` = 5
+    </select>
+
+    <select id="getUserByUID" resultType="com.siruiman.crosslogistics.model.dto.TruckDriverOrder">
+        SELECT
+	      auc.user_true_name AS userTrueName,
+	      auc.license_plate AS licensePlate
+      FROM
+	      app_user_certification AS auc
+    WHERE
+	    auc.app_user_id = #{appUserId}
+      AND auc.user_certification_status = '已通过'
+      AND auc.user_type = '货车'
+    </select>
+</mapper>

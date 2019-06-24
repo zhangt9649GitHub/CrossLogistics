@@ -1,0 +1,183 @@
+
+*{
+	margin: 0px;
+	padding:0px;
+	font-size: 14px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color:#333;
+}
+
+ul>li{
+	list-style: none;
+}
+
+a{
+	text-decoration: none;
+	color:initial;
+}
+.public{
+	width: 1280px;
+	margin: 0 auto;
+}
+
+/* header start */
+.topheader{
+	background-color: #fff;
+	line-height: 70px;
+	height:70px;
+	font-size:14px;
+}
+
+.topheader .logo{
+	float:left;
+	height: 44px;
+}
+.topheader .logo img{
+	height: 100%;
+}
+
+.topheader .nav {
+	margin-left: 30px;
+	float: left;
+}
+
+.topheader .nav-item{
+	float: left;
+	padding:0 15px;
+	cursor: pointer;
+}
+.topheader .nav-item>a{
+	display: inline-block;
+    position: relative;
+}
+
+.topheader .nav-item>a:after{
+	content: '';
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    position: absolute;
+    background: #e13d4e;
+    top: 67px;
+	box-sizing: border-box;
+	
+}
+.topheader .nav-item>a:hover{
+	color:#e13d4e;
+}
+.topheader .nav-item:hover a:after{
+	left: 0;
+	right: 0;
+}
+/* header end */
+
+
+/* 背景图 start */
+#bag{
+	width:100%;
+	height:487px;
+	cursor: pointer;
+}
+
+#bag img{
+	width:100%;
+	height:100%;
+	cursor: pointer;
+}
+
+/* 背景图 end */
+
+
+/* 查询 start */
+#query{
+	padding: 20px 0;
+}
+#query .flex{
+	display: flex;
+}
+#query .flex input{
+	flex:1;
+}
+
+#query .flex .submit{
+	width:100px;
+	background-color: #fff;
+	text-align: center;
+	line-height: 35px;
+	height: 38px;
+	border-width:1px 1px 1px 0;
+	border-color: #DC1E32;
+	border-style: solid;
+	box-sizing: border-box;
+	background: #DC1E32;
+	cursor: pointer;
+}
+#query .flex .layui-icon{
+	color: #fff;
+	font-size: 24px;
+	
+}
+#query .flex .types{
+	width: 130px;
+	margin-right: -1px;
+}
+#query .flex select{
+	width: 100%;
+}
+
+/* 查询 end */
+
+
+
+/* footer start */
+.botfooter{
+	width: 100%;
+	min-width: 1280px;
+	border-top:8px solid #dc1e32;
+	background: #000;
+	padding:50px 0 30px 0;
+	color: #fff;
+	position: relative;
+}
+.botfooter .info{
+	display: flex;
+	align-items: flex-end;
+	width: 1280px;
+	margin: 0 auto;
+}
+.botfooter .ul1{
+	flex: 1;
+	text-align: center;
+}
+.botfooter .ul2{
+	width:400px;
+}
+.botfooter ul li{
+	line-height: 30px;
+	color: #fff;
+}
+
+
+/* 返回顶部 */
+
+ #totop{
+	position: fixed;
+	width: 48px;
+    height: 48px;
+    background: url(../img/to-top-red.png) no-repeat;
+    cursor: pointer;
+	right: 50%;
+	top:100%;
+    margin-top: -50px;
+    margin-right: -640px;
+	display: none;
+	cursor: pointer;
+}
+ #totop a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+
+/* footer end */

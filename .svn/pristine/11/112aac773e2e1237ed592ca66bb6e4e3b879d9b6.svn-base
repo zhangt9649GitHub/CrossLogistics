@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AdminUserMapper" >
+  <!--查询新增用户类型 2019 -03-21 添加第三方管理员-->
+  <select id="selectAdminUserAll" resultType="com.siruiman.crosslogistics.model.AdminUser">
+    SELECT a.admin_uid, a.admin_name, b.group_name, a.add_time, a.status,aut.name as userType,a.attribution
+    FROM admin_user a
+    LEFT JOIN admin_access_group b
+    ON a.group_id = b.group_id
+    Left join admin_user_type as aut
+    on a.admin_user_type_id = aut.admin_user_type_id
+    WHERE a.status != -1
+    <if test="groupId != 0">
+      AND a.group_id = #{groupId}
+    </if>
+    <if test="search != ''||search != null">
+      AND a.admin_name like '%${search}%'
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM admin_user a
+    LEFT JOIN admin_access_group b
+    ON a.group_id = b.group_id
+    Left join admin_user_type as aut
+    on a.admin_user_type_id = aut.admin_user_type_id
+    WHERE a.status != -1
+    <if test="groupId != 0">
+      AND a.group_id = #{groupId}
+    </if>
+    <if test="search != ''||search != null">
+      AND a.admin_name like '%${search}%'
+    </if>
+  </select>
+  <!-- 2019 -03 -21 新增用户 时添加用户类型 张占伟 -->
+  <insert id="addAdminUser" parameterType="com.siruiman.crosslogistics.model.dto.AdminUserDto">
+    INSERT INTO
+      admin_user(group_id, admin_name, password, add_time,admin_user_type_id,attribution,warehouse_id)
+    VALUES
+      (#{adminUserDto.groupId}, #{adminUserDto.adminName}, #{adminUserDto.password}, now(),#{adminUserDto.adminUserTypeId},#{adminUserDto.attribution},#{adminUserDto.warehouseId})
+  </insert>
+
+  <select id="selectGroupAll" resultType="com.siruiman.crosslogistics.model.Group">
+    SELECT group_id, group_name
+    FROM admin_access_group
+  </select>
+
+  <select id="selectEditAdminUser" resultType="com.siruiman.crosslogistics.model.dto.AdminUserDto">
+    SELECT a.admin_uid, a.admin_name, b.group_id, a.add_time,aut.`name` as userType,a.attribution,a.warehouse_id
+    FROM admin_user a
+    LEFT JOIN admin_access_group b
+    ON a.group_id = b.group_id
+    Left join admin_user_type as aut
+    on a.admin_user_type_id = aut.admin_user_type_id
+    WHERE a.admin_uid = #{adminUid}
+  </select>
+
+  <update id="editAdminUser" parameterType="com.siruiman.crosslogistics.model.dto.AdminUserDto">
+    UPDATE admin_user
+    SET group_id = #{adminUserDto.groupId}, admin_name = #{adminUserDto.adminName}, password = #{adminUserDto.newPassword}, operating_time = now(),
+    attribution = #{adminUserDto.attribution},warehouse_id = #{adminUserDto.warehouseId}
+    WHERE admin_uid = #{adminUserDto.adminUid}
+  </update>
+
+  <update id="deleteAdminUser">
+    UPDATE admin_user
+    SET status = -1
+    WHERE admin_uid = #{adminUid}
+  </update>
+
+  <update id="editAdminUserStatus">
+    UPDATE admin_user
+    SET status = #{status}
+    WHERE admin_uid = #{adminUid}
+  </update>
+
+  <select id="selectPassword" resultType="java.lang.String">
+    SELECT `password`
+    FROM admin_user
+    WHERE admin_uid = #{adminUid}
+  </select>
+
+  <select id="selectAdminUserBuName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM admin_user
+    WHERE admin_name = #{adminName}
+    AND status != '-1'
+  </select>
+
+  <select id="getAdminList" resultType="com.siruiman.crosslogistics.model.AdminUser">
+    SELECT a.admin_uid, a.admin_name
+    FROM admin_user a where a.status = 1
+  </select>
+</mapper>

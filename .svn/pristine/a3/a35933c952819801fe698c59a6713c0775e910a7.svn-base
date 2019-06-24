@@ -1,0 +1,10 @@
+#Mybatis Generator configuration
+#dao���ʵ�����λ��
+project=src/main/java
+#mapper�ļ���λ��
+resources=src/main/resources
+#�������ݿ��еı����ɶ�Ӧ��pojo�ࡢdao��mapper
+jdbc_driver=com.mysql.jdbc.Driver
+jdbc_url=jdbc:mysql://rm-bp1i1x1kx2lhwyx01eo.mysql.rds.aliyuncs.com:3306/cross_logistics_db?useUnicode=true&characterEncoding=utf8
+jdbc_user=cross_logistics
+jdbc_password=cross_logistics_123456

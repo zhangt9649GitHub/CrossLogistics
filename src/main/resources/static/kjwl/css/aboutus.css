@@ -1,0 +1,28 @@
+
+#content{
+	padding: 40px 10px;
+}
+#content h3{
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	letter-spacing: 8px;
+}
+#content .info{
+	line-height: 1.5;
+	margin: 20px 0 20px 0;
+}
+#content .info img{
+	width: 100%;
+}
+#content .info p{
+	line-height: 24px;
+}
+#content .info b{
+	font-size: 18px;
+	color:#444a7c;
+	line-height: 28px;
+}
+#content .info .item{
+	margin-top: 40px;
+}

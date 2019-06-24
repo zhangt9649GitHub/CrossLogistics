@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AdminUserLoginMapper" >
+
+<select id="select" parameterType="com.siruiman.crosslogistics.model.dto.AdminUserLoginDto" resultType="com.siruiman.crosslogistics.model.dto.AdminUserLoginDto">
+  select admin_name as userName ,password as password,`status` as status ,admin_uid as adminUId
+  from admin_user
+  where admin_name = #{adminUserLoginDto.userName,jdbcType=VARCHAR}
+  and password =#{adminUserLoginDto.password,jdbcType=VARCHAR}
+  and `status`in(0,1)
+</select>
+  <update id="updateUserLogin" parameterType="com.siruiman.crosslogistics.model.dto.AdminUserLoginDto">
+    update admin_user
+    set login_time =#{userLogin.loginTime,jdbcType=TIMESTAMP},
+        login_ip=#{userLogin.ip,jdbcType=VARCHAR}
+    where
+    admin_uid = #{userLogin.adminUId}
+  </update>
+
+  <select id="selectByName" parameterType="string" resultType="com.siruiman.crosslogistics.model.dto.AdminUserLoginDto">
+  select au.admin_name as userName ,au.password as password,au.`status` as status ,au.admin_uid as adminUId,
+  au.group_id as groupId,aut.admin_user_type_id as adminUserTypeId,aut.name as userType,au.warehouse_id,aut.type
+  from admin_user as au left join admin_user_type as aut on aut.admin_user_type_id = au.admin_user_type_id
+  where admin_name = #{userName,jdbcType=VARCHAR}
+  and `status`in(0,1)
+  </select>
+</mapper>

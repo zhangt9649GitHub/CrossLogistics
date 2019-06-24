@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TruckDeliveryAssistantMapper" >
+
+  <select id="selectAppTruckOrder" resultType="com.siruiman.crosslogistics.model.AppTruckOrder">
+    SELECT task_order_id, order_number, `name` AS orderName, create_time, state
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    AND create_time &lt;= #{createTime}
+    AND state != '5'
+    ORDER BY create_time ASC
+  </select>
+
+  <update id="editTruckOrderStatus">
+    UPDATE task_truck_order
+    SET state = '3', order_type = #{orderType}
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectWarehouseLatLng" resultType="com.siruiman.crosslogistics.model.Warehouse">
+    SELECT c.warehouse_lat, c.warehouse_lng
+    FROM task_truck_order a
+    LEFT JOIN task_truck_order_route b
+    ON a.task_order_id = b.task_order_id
+    LEFT JOIN warehouse c
+    ON b.route_id = c.warehouse_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND b.sequence = '1'
+  </select>
+
+  <select id="selectTruckNumber" resultType="java.lang.String">
+    SELECT `number`
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <insert id="addDeliverySsistantRecord">
+    INSERT INTO
+      delivery_ssistant_record(app_user_id, task_order_id, order_type, step)
+    VALUES
+      (#{appUserId}, #{taskOrderId}, #{orderType}, '1')
+  </insert>
+
+  <select id="selectBagId" resultType="java.lang.Integer">
+    SELECT bag_id
+    FROM bag
+    WHERE bag_number = #{bagNumber}
+  </select>
+  
+  <insert id="truckOrderBindingBag">
+    INSERT INTO
+      task_order_bag(bag_id, task_order_id, type)
+    VALUES
+      (#{bagId}, #{taskOrderId}, '2')
+  </insert>
+
+  <update id="editStep">
+    UPDATE delivery_ssistant_record
+    SET step = #{step}
+    WHERE app_user_id = #{appUserId}
+    AND task_order_id = #{taskOrderId}
+    AND order_type = #{orderType}
+  </update>
+
+  <select id="selectTruckOrderRoute" resultType="com.siruiman.crosslogistics.model.TruckTaskRoute">
+    SELECT a.todr_id, a.route_id, a.sequence AS sort, a.status, b.rally_point_name AS routeName,b.rally_point_lat, b.rally_point_lng, a.reach_status
+    FROM task_truck_order_route a
+    LEFT JOIN rally_point b
+    ON a.route_id = b.rally_point_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND a.sequence != 1
+  </select>
+
+  <select id="selectTruckOrderRouteByrallyPointId" resultType="com.siruiman.crosslogistics.model.TruckTaskRoute">
+    SELECT a.todr_id, a.route_id, a.sequence AS sort, a.status, b.rally_point_name AS routeName,b.rally_point_lat, b.rally_point_lng, a.reach_status
+    FROM task_truck_order_route a
+    LEFT JOIN rally_point b
+    ON a.route_id = b.rally_point_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND a.route_id = #{rallyPointId}
+    AND a.sequence != 1
+  </select>
+
+  <select id="countTruckOrderRoute" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order_route a
+    LEFT JOIN rally_point b
+    ON a.route_id = b.rally_point_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND a.sequence != 1
+  </select>
+
+  <select id="selectRallyPointId" resultType="java.lang.Integer">
+    SELECT b.rally_point_id
+    FROM car_lock a
+    LEFT JOIN car b
+    ON a.car_id = b.car_id
+    WHERE a.lock_number = #{lockNumber}
+  </select>
+
+  <select id="selectGoodsId" resultType="java.lang.Integer">
+    SELECT goods_id
+    FROM goods
+    WHERE delivery_number = #{deliveryNumber}
+  </select>
+
+  <insert id="bindingAppUserAndVeryGoods">
+    INSERT INTO
+      truck_problem_piece(app_user_id, goods_id, car_id, create_time)
+    VALUES
+      (#{appUserId}, #{goodsId}, #{carId}, #{createTime})
+  </insert>
+
+  <select id="selectCarId" resultType="java.lang.Integer">
+    SELECT car_id
+    FROM car_lock
+    WHERE lock_number = #{lockNumber}
+  </select>
+
+  <select id="selectCarOrderId" resultType="java.lang.Integer">
+    SELECT task_order_id
+    FROM task_car_order
+    WHERE car_id = #{carId}
+    AND create_time = #{createTime}
+  </select>
+
+  <insert id="bindingCarBag">
+    UPDATE bag
+    SET car_id = #{carId}
+    WHERE bag_id = #{bagId}
+  </insert>
+
+  <update id="editTruckOrderRouteStatus">
+    UPDATE task_truck_order_route
+    SET reach_status = '1'
+    WHERE todr_id = #{todrId}
+  </update>
+
+  <select id="selectStep" resultType="java.lang.Integer">
+    SELECT step
+    FROM delivery_ssistant_record
+    WHERE app_user_id = #{appUserId}
+    AND task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckOrderBags" resultType="java.lang.String">
+    SELECT b.bag_number
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND `type` = '2'
+  </select>
+
+  <select id="selectVeryGoods" resultType="java.lang.String">
+    SELECT b.delivery_number
+    FROM truck_problem_piece a
+    LEFT JOIN goods b
+    ON a.goods_id = b.goods_id
+    WHERE a.app_user_id = #{appUserId}
+    AND a.car_id = #{carId}
+    AND a.create_time = #{createTime}
+  </select>
+
+  <select id="selectCarOrderBagNum" resultType="java.lang.String">
+    SELECT b.bag_number
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{carOrderId}
+    AND `type` = '1'
+  </select>
+
+  <update id="truckOrderComplete">
+    UPDATE task_truck_order
+    SET state = '5'
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectCarState" resultType="java.lang.Integer">
+    SELECT b.state
+    FROM car_lock a
+    LEFT JOIN car b
+    ON a.car_id = b.car_id
+    WHERE a.lock_number = #{lockNumber}
+  </select>
+
+  <update id="editCarStatus">
+    UPDATE car
+    SET state = '2'
+    WHERE car_id = #{carId}
+  </update>
+
+  <update id="editBagStatus">
+    UPDATE bag
+    SET state = #{state}
+    WHERE bag_id = #{bagId}
+  </update>
+
+  <select id="selectRallyPointBags" resultType="com.siruiman.crosslogistics.model.RallyPointBags">
+    SELECT b.bag_id, b.bag_number, b.state
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND b.rally_point_id = #{rallyPointId}
+    AND a.type = '2'
+    AND b.state = '6'
+  </select>
+
+  <update id="editCarLockStatus">
+    UPDATE car_lock
+    SET state = #{state}
+    WHERE lock_number = #{lockNumber}
+  </update>
+
+  <select id="selectRallyPointIdByBagId" resultType="java.lang.Integer">
+    SELECT rally_point_id
+    FROM bag
+    WHERE bag_id = #{bagId}
+  </select>
+
+  <select id="selectRallyPointIdAndCarId" resultType="com.siruiman.crosslogistics.model.RallyPointIdAndCarId">
+    SELECT a.car_id, b.rally_point_id
+    FROM car_lock a
+    LEFT JOIN car b
+    ON a.car_id = b.car_id
+    WHERE a.lock_number = #{lockNumber}
+  </select>
+
+  <select id="selectCarOrderTime" resultType="com.siruiman.crosslogistics.model.CarOrderTime">
+    SELECT task_order_id, DATE_FORMAT(grab_order_time,'%Y-%m-%d %H:%i:%s') AS grabOrderTime
+    FROM task_car_order
+    WHERE rally_point_id = #{rallyPointId}
+    AND create_time = #{createTime}
+    AND grab_order_status = '1'
+    AND car_id IS NULL
+  </select>
+
+  <select id="selectRallyPointIdByCarId" resultType="java.lang.Integer">
+    SELECT rally_point_id
+    FROM car
+    WHERE car_id = #{carId}
+  </select>
+
+  <update id="bindingCarOrderAndCar">
+    UPDATE task_car_order
+    SET car_id = #{carId}, money = #{orderMoney}, bag_id = #{bagId}
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <select id="selectCarOrderTimeByCarTask" resultType="com.siruiman.crosslogistics.model.CarOrderTime">
+    SELECT ct.car_task_id AS taskOrderId, DATE_FORMAT(add_time,'%Y-%m-%d %H:%i:%s') AS grabOrderTime
+    FROM car_task AS ct
+    LEFT JOIN task_car_order AS tco ON (ct.car_task_id = tco.car_task_id)
+    WHERE ct.rally_point_id = #{rallyPointId} AND tco.car_id IS NULL AND tco.create_time = #{createTime}
+  </select>
+
+  <select id="selectCarOrderIdByCarTask" resultType="java.lang.Integer">
+    SELECT task_order_id
+    FROM task_car_order
+    WHERE car_task_id = #{carTaskId}
+    AND create_time = #{createTime}
+  </select>
+
+  <select id="selectCarOrderNOTaskGrab" resultType="com.siruiman.crosslogistics.model.CarOrderTime">
+    SELECT task_order_id
+    FROM task_car_order
+    WHERE rally_point_id = #{rallyPointId}
+    AND create_time = #{createTime}
+    AND car_id IS NULL
+  </select>
+
+  <select id="selectGoodsNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM goods
+    WHERE bag_id = #{bagId}
+  </select>
+
+  <select id="selectTruckOrderMoney" resultType="com.siruiman.crosslogistics.model.TruckOrderMoney">
+    SELECT ifnull((money + add_money),money) AS totalMoney, ifnull((integral + add_integral),0) AS totalIntegral
+    FROM task_truck_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectBindingBag" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_order_bag
+    WHERE bag_id = #{bagId}
+    AND task_order_id = #{taskOrderId}
+  </select>
+
+  <update id="editTruckStatus">
+    UPDATE truck
+    SET state = #{state}
+    WHERE license_plate IN (SELECT license_plate FROM app_user_certification WHERE app_user_id = #{appUserId})
+  </update>
+
+  <select id="selectIsAbnormal" resultType="com.siruiman.crosslogistics.model.TruckProblemPiece">
+    SELECT goods_id
+    FROM truck_problem_piece
+    WHERE app_user_id = #{appUserId}
+    AND status = '1'
+  </select>
+
+  <select id="selectVeryGoodsByTruck" resultType="java.lang.String">
+    SELECT b.delivery_number
+    FROM truck_problem_piece a
+    LEFT JOIN goods b
+    ON a.goods_id = b.goods_id
+    WHERE a.app_user_id = #{appUserId}
+    AND a.status = 1
+  </select>
+
+  <select id="selectVeryGoodsIsSolve" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM truck_problem_piece
+    WHERE app_user_id = #{appUserId}
+    AND create_time = #{createTime}
+    AND status = '1'
+  </select>
+
+  <select id="selectTruckOrderBagsNum" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_order_bag
+    WHERE task_order_id = #{taskOrderId}
+    AND type = '货车'
+  </select>
+
+  <update id="editTruckOrderMoney">
+    UPDATE task_truck_order
+    SET money = #{money}
+    WHERE task_order_id = #{taskOrderId}
+  </update>
+
+  <update id="storageLockNumber">
+    UPDATE delivery_ssistant_record
+    SET lock_number = #{lockNumber}, bag_number = #{bagNumber}, todr_id = #{todrId}, rally_point_id = #{rallyPointId}
+    WHERE app_user_id = #{appUserId}
+    AND task_order_id = #{taskOrderId}
+    AND order_type = '1'
+  </update>
+
+  <select id="selectLockNumber" resultType="com.siruiman.crosslogistics.model.TruckDeliveryAssStep">
+    SELECT lock_number, bag_number, todr_id, rally_point_id
+    FROM delivery_ssistant_record
+    WHERE app_user_id = #{appUserId}
+    AND task_order_id = #{taskOrderId}
+    AND order_type = '1'
+  </select>
+
+  <select id="selectTruckOrderStatus" resultType="java.lang.Integer">
+    SELECT state
+    FROM task_truck_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="countDeliverySsistantRecord" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM delivery_ssistant_record
+    WHERE app_user_id = #{appUserId}
+    AND task_order_id = #{taskOrderId}
+    AND order_type = #{orderType}
+  </select>
+
+  <select id="selectZipCode" resultType="java.lang.String">
+    SELECT d.zip_code
+    FROM task_truck_order a
+    LEFT JOIN task_order_bag b
+    ON a.task_order_id = b.task_order_id
+    LEFT JOIN bag c
+    ON b.bag_id = c.bag_id
+    LEFT JOIN goods d
+    ON c.bag_id = d.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+    GROUP BY d.zip_code
+  </select>
+
+  <select id="selectPointPackageByZipCode" resultType="com.siruiman.crosslogistics.model.PointPackage">
+    SELECT b.goods_id, b.delivery_number, b.status, b.zip_code, c.receipt_address, c.receipt_contact, c.receipt_contact_mobile, c.is_receive_goods, d.bag_number,
+            c.is_arrival_pay, c.item_value AS COD, c.gst_price AS GST
+    FROM task_order_bag a
+    LEFT JOIN bag d
+    ON a.bag_id = d.bag_id
+    LEFT JOIN goods b
+    ON d.bag_id = b.bag_id
+    LEFT JOIN goods_details c
+    ON b.goods_id = c.goods_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND b.zip_code = #{zipCode}
+    AND b.status != '2'
+    AND c.is_receive_goods != '1'
+  </select>
+
+  <select id="selectTruckUserBudingErrorGoods" resultType="java.lang.String">
+    SELECT b.delivery_number
+    FROM truck_problem_piece a
+    LEFT JOIN goods b
+    ON a.goods_id = b.goods_id
+    WHERE a.app_user_id = #{appUserId}
+    AND a.create_time = #{createTime}
+  </select>
+
+  <select id="selectCarLockState" resultType="java.lang.Integer">
+    SELECT state
+    FROM car_lock
+    WHERE lock_number = #{lockNumber}
+  </select>
+
+  <select id="selectCarBudingBag" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM bag
+    WHERE car_id = #{carId}
+    AND state = '7'
+  </select>
+
+  <select id="selectTruckOrderBagByZipCode" resultType="com.siruiman.crosslogistics.model.CargoInfo">
+    SELECT c.warning_state, c.is_receive_goods
+    FROM task_order_bag a
+    LEFT JOIN goods b
+    ON a.bag_id = b.bag_id
+    LEFT JOIN goods_details c
+    ON b.goods_id = c.goods_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND a.type = '2'
+    AND b.zip_code = #{zipCode}
+  </select>
+
+  <select id="selectBagIdByGoodsId" resultType="java.lang.Integer">
+    SELECT bag_id
+    FROM goods
+    WHERE goods_id = #{goodsId}
+  </select>
+
+  <select id="selectOrderType" resultType="java.lang.Integer">
+    SELECT order_type
+    FROM task_truck_order
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTotalGoods" resultType="com.siruiman.crosslogistics.model.PointPackage">
+    SELECT a.total_goods, b.item_value AS COD
+    FROM goods a
+    LEFT JOIN goods_details b
+    ON a.goods_id = b.goods_id
+    WHERE a.delivery_number = #{deliveryNumber}
+  </select>
+
+  <select id="selectIsReceiveGoods" resultType="java.lang.Integer">
+    SELECT b.is_receive_goods
+    FROM goods a
+    LEFT JOIN goods_details b
+    ON a.goods_id = b.goods_id
+    WHERE a.delivery_number = #{deliveryNumber}
+  </select>
+
+  <select id="selectPeopleGoodsBySimple" resultType="com.siruiman.crosslogistics.model.PeopleGoods">
+    SELECT b.goods_id, b.delivery_number, c.is_arrival_pay, c.item_value AS COD, c.gst_price AS GST
+    FROM goods_from_associated a
+    LEFT JOIN goods b
+    ON d.goods_id = b.goods_id
+    LEFT JOIN goods_details c
+    ON b.goods_id = c.goods_id
+    WHERE a.form_id IN (SELECT b.form_id FROM goods a LEFT JOIN goods_from_associated b ON a.goods_id = b.goods_id WHERE a.delivery_number = #{deliveryNumber})
+    AND b.status != '2'
+    AND c.is_receive_goods != '1'
+    AND c.receipt_contact_mobile IN (SELECT b.receipt_contact_mobile FROM goods a LEFT JOIN goods_details b ON a.goods_id = b.goods_id WHERE a.delivery_number = #{deliveryNumber})
+  </select>
+
+  <select id="selectPeopleGoodsByTruckNormal" resultType="com.siruiman.crosslogistics.model.PeopleGoods">
+    SELECT b.goods_id, b.delivery_number, d.bag_number, c.is_arrival_pay, c.item_value AS COD, c.gst_price AS GST
+    FROM task_order_bag a
+    LEFT JOIN bag d
+    ON a.bag_id = d.bag_id
+    LEFT JOIN goods b
+    ON d.bag_id = b.bag_id
+    LEFT JOIN goods_details c
+    ON b.goods_id = c.goods_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND b.status != '2'
+    AND b.zip_code = #{zipCode}
+    AND b.total_goods = '1'
+    AND c.is_receive_goods != '1'
+    AND c.receipt_contact_mobile IN (SELECT b.receipt_contact_mobile FROM goods a LEFT JOIN goods_details b ON a.goods_id = b.goods_id WHERE a.delivery_number = #{deliveryNumber})
+  </select>
+
+  <select id="selectPeopleGoodsByCarNormal" resultType="com.siruiman.crosslogistics.model.PeopleGoods">
+    SELECT b.goods_id, b.delivery_number, d.bag_number, c.is_arrival_pay, c.item_value AS COD, c.gst_price AS GST
+    FROM task_car_order a
+    LEFT JOIN bag d
+    ON a.bag_id = d.bag_id
+    LEFT JOIN goods b
+    ON d.bag_id = b.bag_id
+    LEFT JOIN goods_details c
+    ON b.goods_id = c.goods_id
+    WHERE a.task_order_id = #{taskOrderId}
+    AND b.status != '2'
+    AND b.zip_code = #{zipCode}
+    AND c.is_receive_goods != '1'
+    AND c.receipt_contact_mobile IN (SELECT b.receipt_contact_mobile FROM goods a LEFT JOIN goods_details b ON a.goods_id = b.goods_id WHERE a.delivery_number = #{deliveryNumber})
+  </select>
+
+  <select id="selectCountCarOrder" resultType="java.lang.Integer">
+    SELECT count(task_order_id)
+    FROM task_car_order
+    WHERE car_id = #{carId} AND bag_id = #{bagId} AND state != 5
+  </select>
+
+  <select id="selectGoodsIdByCarId" resultType="com.siruiman.crosslogistics.model.TruckProblemPiece">
+    SELECT app_user_id,goods_id,car_id,status,create_time
+    FROM truck_problem_piece
+    WHERE goods_id = #{goodsId}
+  </select>
+
+  <select id="selectCarOrderByRallyId" resultType="com.siruiman.crosslogistics.model.TaskCarOrder">
+    SELECT task_order_id, car_task_id, app_user_id, order_number, `name`, money, integral,
+        add_money, add_integral, `state`, singapore_area_id, rally_point_id, car_id, create_time,
+        `comment`,bag_id
+    from task_car_order
+    WHERE rally_point_id = #{rallyPointId} AND create_time = #{createTime} AND car_id is null
+  </select>
+
+  <select id="selectTruckOrderById" resultType="com.siruiman.crosslogistics.model.TruckDeliveryAssistant">
+    select app_user_id,task_order_id,order_type,step,lock_number,zip_code,bag_number,todr_id,rally_point_id
+     from delivery_ssistant_record
+     where task_order_id = #{taskOrderId} and order_type = 1
+  </select>
+
+
+
+</mapper>

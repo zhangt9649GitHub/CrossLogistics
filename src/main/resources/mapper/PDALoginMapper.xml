@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.PDALoginMapper" >
+
+  <select id="selectStaff" resultType="com.siruiman.crosslogistics.model.Staff">
+    SELECT staff_id, staff_group_id, number, staff_name, head_pic, sex, born_years, age, mobile, `position`, user_name, password, status, add_time,warehouse_id
+    FROM staff
+    WHERE user_name = #{userName}
+  </select>
+
+  <select id="selectStaffAccess" resultType="com.siruiman.crosslogistics.model.StaffAccess">
+    SELECT c.sa_id, c.sa_name
+    FROM staff a
+    LEFT JOIN staff_group_access b
+    ON a.staff_group_id = b.staff_group_id
+    LEFT JOIN staff_access c
+    ON b.sa_id = c.sa_id
+    WHERE a.staff_id = #{staffId}
+  </select>
+</mapper>

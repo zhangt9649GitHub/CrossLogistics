@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppTaskCarOrderMapper" >
+  <select id="selectAppTaskCarOrderByStatus" resultType="com.siruiman.crosslogistics.model.AppTaskCarOrder">
+    SELECT task_order_id, app_user_id, order_number, `name`, ifnull((money + add_money),money) AS totalMoney, ifnull((integral + add_integral),0) AS totalIntegral,
+            add_money, add_integral, state, singapore_area_id, rally_point_id, car_id, DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS createTime, comment
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+    <if test="type == 1">
+      AND state = 2
+    </if>
+    <if test="type == 2">
+      AND (state = 3 OR state = 4)
+    </if>
+    <if test="type == 3">
+      AND state = 5
+    </if>
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+    <if test="type == 1">
+      AND state = 2
+    </if>
+    <if test="type == 2">
+      AND (state = 3 OR state = 4)
+    </if>
+    <if test="type == 3">
+      AND state = 5
+    </if>
+  </select>
+
+  <select id="selectAppTaskCarOrderDetails" resultType="com.siruiman.crosslogistics.model.AppTaskCarOrderDetails">
+    SELECT a.task_order_id, a.order_number, a.name, a.money AS totalMoney, ifnull((a.integral + a.add_integral),0) AS totalIntegral, a.add_money, a.add_integral,
+            a.state, a.singapore_area_id, b.singapore_area_name, a.rally_point_id, c.rally_point_name, c.rally_point_lat, c.rally_point_lng, a.car_id,
+            DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime, d.car_number
+    FROM task_car_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    LEFT JOIN rally_point c
+    ON a.rally_point_id = c.rally_point_id
+    LEFT JOIN car d
+    ON a.car_id = d.car_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTaskCarOrderRoute" resultType="com.siruiman.crosslogistics.model.AppTaskCarOrderRoute">
+    SELECT c.zip_code, d.sa_building_name, d.sa_building_lat, d.sa_building_lng
+    FROM task_truck_order a
+    LEFT JOIN task_order_bag b
+    ON a.task_order_id = b.task_order_id
+    LEFT JOIN goods c
+    ON b.bag_id = c.bag_id
+    LEFT JOIN singapore_area_building d
+    ON c.zip_code = d.sa_zip_code
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTaskCarOrderBag" resultType="com.siruiman.crosslogistics.model.AppTaskCarOrderBag">
+    SELECT c.goods_id, c.delivery_number
+    FROM task_truck_order a
+    LEFT JOIN task_order_bag b
+    ON a.task_order_id = b.task_order_id
+    LEFT JOIN goods c
+    ON b.bag_id = c.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+</mapper>

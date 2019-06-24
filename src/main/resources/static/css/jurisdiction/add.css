@@ -1,0 +1,44 @@
+
+.item{
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border-color: rgb(230, 230, 230);
+    border-width: 0px 1px 1px 1px;
+}
+
+.item .one{
+    width: 200px;
+}
+
+.item .two{
+    width: 300px;
+}
+.item .there{
+    flex: 1;
+}
+.item .two{
+    border-right: 1px solid  rgb(230, 230, 230);
+    border-left: 1px solid  rgb(230, 230, 230);
+}
+.item .there li{
+    display: inline-block;
+}
+.item .there ul{
+    border-bottom: 1px solid  rgb(230, 230, 230);
+    padding: 5px 0;
+    min-height: 32px;
+}
+.item .there ul:last-child{
+    border: 0;
+}
+.item .two li{
+    border-bottom: 1px solid  rgb(230, 230, 230);
+    padding: 5px 0;
+}
+.item .two li:last-child{
+    border-bottom: 0px;
+}
+.name{
+    width: 165px !important;
+}

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppTruckOrderMapper" >
+  <select id="selectAppTruckOrderAll" resultType="com.siruiman.crosslogistics.model.AppTruckOrder" parameterType="com.siruiman.crosslogistics.model.dto.AppTaskOrderDto">
+    SELECT ss.task_order_id, ss.app_user_id, ss.order_number, ss.orderName, ss.totalMoney, ss.totalIntegral,
+           ss.add_money, ss.add_integral, ss.state, ss.createTime, ss.juli
+    FROM
+      (SELECT a.task_order_id, a.app_user_id, a.order_number, a.`name` AS orderName, ifnull((a.money + a.add_money),money) AS totalMoney, ifnull((a.integral + a.add_integral),0) AS totalIntegral,
+                a.add_money, a.add_integral, a.state, DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime,
+        ROUND(
+          6378.138 * 2 * ASIN(
+            SQRT(
+              POW(
+                SIN(
+                  (
+                    #{appTaskOrderDto.positionLat} * PI() / 180 - c.warehouse_lat * PI() / 180
+                  ) / 2
+                ),
+                2
+              ) + COS(#{appTaskOrderDto.positionLat} * PI() / 180) * COS(c.warehouse_lat * PI() / 180) * POW(
+                SIN(
+                  (
+                    #{appTaskOrderDto.positionLng} * PI() / 180 - c.warehouse_lng * PI() / 180
+                  ) / 2
+                ),
+                2
+              )
+            )
+          ) * 1000
+        ) AS juli
+      FROM task_truck_order a
+      LEFT JOIN task_truck_order_route b
+      ON a.task_order_id = b.task_order_id
+      LEFT JOIN warehouse c
+      ON b.route_id = c.warehouse_id
+      WHERE b.status = '2'
+      <if test="appTaskOrderDto.singaporeAreaId != null and appTaskOrderDto.singaporeAreaId != 0">
+        AND a.singapore_area_id = #{appTaskOrderDto.singaporeAreaId}
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 0">
+        AND (a.state = 1 OR a.state = 2 OR a.state = 3)
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 1">
+        AND a.state = 1
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 2">
+        AND (a.state = 2 OR a.state = 3)
+      </if>) AS ss
+    WHERE 1=1
+    <if test="appTaskOrderDto.orderTime == null or appTaskOrderDto.orderTime == ''">
+      AND ss.createTime &gt;= #{appTaskOrderDto.nowTime}
+    </if>
+    <if test="appTaskOrderDto.orderTime != null and appTaskOrderDto.orderTime != ''">
+      AND ss.createTime = #{appTaskOrderDto.orderTime}
+    </if>
+    <if test="appTaskOrderDto.distance != null and appTaskOrderDto.distance != 0">
+      AND juli &lt;= #{appTaskOrderDto.distance}
+    </if>
+    <if test="appTaskOrderDto.sort == 1 and appTaskOrderDto.sort == 0">
+      ORDER BY ss.createTime ASC
+    </if>
+    <if test="test= appTaskOrderDto.sort == 3">
+      ORDER BY ss.juli ASC
+    </if>
+    <if test="appTaskOrderDto.sort == 4">
+      ORDER BY ss.juli DESC
+    </if>
+    <if test="appTaskOrderDto.distance == 0 and appTaskOrderDto.sort == 2">
+      ORDER BY ss.createTime DESC
+    </if>
+    <if test="appTaskOrderDto.distance != 0 and appTaskOrderDto.sort == 1 or appTaskOrderDto.distance != 0 and appTaskOrderDto.sort == 0">
+      ORDER BY ss.createTime ASC
+    </if>
+    <if test="appTaskOrderDto.distance != 0 and appTaskOrderDto.sort == 2">
+      ORDER BY ss.createTime DESC
+    </if>
+    <if test="appTaskOrderDto.distance != 0 and appTaskOrderDto.sort == 3">
+      ORDER BY ss.juli ASC
+    </if>
+    <if test="appTaskOrderDto.distance != 0 and appTaskOrderDto.sort == 4">
+      ORDER BY ss.juli DESC
+    </if>
+  </select>
+
+
+  <!--<select id="selectAppTruckOrderAll" resultType="com.siruiman.crosslogistics.model.AppTruckOrder" parameterType="com.siruiman.crosslogistics.model.dto.AppTaskOrderDto">
+    SELECT ss.task_order_id, ss.app_user_id, ss.order_number, ss.orderName, ss.totalMoney, ss.totalIntegral,
+            ss.add_money, ss.add_integral, ss.state, ss.createTime
+    FROM
+      (SELECT a.task_order_id, a.app_user_id, a.order_number, a.`name` AS orderName, ifnull((a.money + a.add_money),money) AS totalMoney, ifnull((a.integral + a.add_integral),0) AS totalIntegral,
+               a.add_money, a.add_integral, a.state, DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime,
+              ROUND(
+                6378.138 * 2 * ASIN(
+                  SQRT(
+                    POW(
+                      SIN(
+                        (
+                          #{appTaskOrderDto.positionLat} * PI() / 180 - c.rally_point_lat * PI() / 180
+                        ) / 2
+                      ),
+                      2
+                      ) + COS(#{appTaskOrderDto.positionLat} * PI() / 180) * COS(c.rally_point_lat * PI() / 180) * POW(
+                      SIN(
+                        (
+                          #{appTaskOrderDto.positionLng} * PI() / 180 - c.rally_point_lng * PI() / 180
+                        ) / 2
+                      ),
+                      2
+                    )
+                  )
+                ) * 1000
+              ) AS juli
+      FROM task_truck_order a
+      LEFT JOIN task_truck_order_route b
+      ON a.task_order_id = b.task_order_id
+      LEFT JOIN warehouse c
+      ON b.route_id = c.warehouse_id
+      WHERE b.status = '2') AS ss
+    WHERE 1=1
+    <if test="appTaskOrderDto.taskOrderStatus == 0">
+      AND ss.state != 5
+    </if>
+    <if test="appTaskOrderDto.taskOrderStatus != null and appTaskOrderDto.taskOrderStatus == 1">
+      AND ss.state = 1
+    </if>
+    <if test="appTaskOrderDto.taskOrderStatus != null and appTaskOrderDto.taskOrderStatus == 2">
+      AND ss.state = 2 OR ss.state = 3
+    </if>
+    <if test="appTaskOrderDto.singaporeAreaId != null and appTaskOrderDto.singaporeAreaId != 0">
+      AND ss.singapore_area_id = #{appTaskOrderDto.singaporeAreaId}
+    </if>
+    <if test="appTaskOrderDto.orderTime != null and appTaskOrderDto.orderTime != ''">
+      AND ss.createTime = #{appTaskOrderDto.orderTime}
+    </if>
+    <if test="appTaskOrderDto.distance != null and appTaskOrderDto.distance != 0">
+      AND ss.juli &gt;= #{appTaskOrderDto.distance}
+    </if>
+    <if test="appTaskOrderDto.sort == 1 and appTaskOrderDto.sort == 0">
+      ORDER BY ss.createTime ASC
+    </if>
+    <if test="appTaskOrderDto.sort == 3">
+      ORDER BY ss.juli ASC
+    </if>
+    <if test="appTaskOrderDto.sort == 4">
+      ORDER BY ss.juli DESC
+    </if>
+    <if test="appTaskOrderDto.sort == 2">
+      ORDER BY ss.createTime DESC
+    </if>
+  </select>-->
+
+  <select id="count" resultType="com.siruiman.crosslogistics.model.AppTaskOrder" parameterType="com.siruiman.crosslogistics.model.dto.AppTaskOrderDto">
+    SELECT ss.total, ss.juli
+    FROM
+      (SELECT COUNT(1) AS total,
+      ROUND(
+      6378.138 * 2 * ASIN(
+      SQRT(
+      POW(
+      SIN(
+      (
+      #{appTaskOrderDto.positionLat} * PI() / 180 - c.warehouse_lat * PI() / 180
+      ) / 2
+      ),
+      2
+      ) + COS(#{appTaskOrderDto.positionLat} * PI() / 180) * COS(c.warehouse_lat * PI() / 180) * POW(
+      SIN(
+      (
+      #{appTaskOrderDto.positionLng} * PI() / 180 - c.warehouse_lng * PI() / 180
+      ) / 2
+      ),
+      2
+      )
+      )
+      ) * 1000
+      ) AS juli
+      FROM task_truck_order a
+      LEFT JOIN task_truck_order_route b
+      ON a.task_order_id = b.task_order_id
+      LEFT JOIN warehouse c
+      ON b.route_id = c.warehouse_id
+      WHERE b.status = '2'
+      <if test="appTaskOrderDto.singaporeAreaId != null and appTaskOrderDto.singaporeAreaId != 0">
+        AND a.singapore_area_id = #{appTaskOrderDto.singaporeAreaId}
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 0">
+        AND (a.state = 1 OR a.state = 2 OR a.state = 3)
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 1">
+        AND a.state = 1
+      </if>
+      <if test="appTaskOrderDto.taskOrderStatus == 2">
+        AND (a.state = 2 OR a.state = 3)
+      </if>
+      <if test="appTaskOrderDto.orderTime == null or appTaskOrderDto.orderTime == ''">
+        AND a.create_time &gt;= #{appTaskOrderDto.nowTime}
+      </if>
+      <if test="appTaskOrderDto.orderTime != null and appTaskOrderDto.orderTime != ''">
+        AND a.create_time = #{appTaskOrderDto.orderTime}
+      </if>) AS ss
+    WHERE 1=1
+    <if test="appTaskOrderDto.distance != null and appTaskOrderDto.distance != 0">
+      AND ss.juli &lt;= #{appTaskOrderDto.distance}
+    </if>
+  </select>
+
+  <select id="selectAppTruckOrderDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderDetails">
+    SELECT a.task_order_id, a.app_user_id, a.order_number, a.`name`, ifnull((a.money + a.add_money),money) AS totalMoney, ifnull((a.integral + a.add_integral),0) AS totalIntegral,
+            a.add_money, a.add_integral, a.state, a.create_time, b.singapore_area_id, b.singapore_area_name
+    FROM task_truck_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectTruckTaskRoute" resultType="com.siruiman.crosslogistics.model.dto.TruckTaskRouteDto">
+    SELECT route_id, status, sequence AS sort
+    FROM task_truck_order_route
+    WHERE task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagByTruckOrder" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBag">
+    SELECT b.bag_id, b.bag_number
+    FROM task_order_bag a
+    LEFT JOIN bag b
+    ON a.bag_id = b.bag_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+
+  <select id="selectAppTruckOrderBagDetails" resultType="com.siruiman.crosslogistics.model.AppTruckOrderBagDetails">
+    SELECT `length`, width, high, `load`
+    FROM bag
+    WHERE bag_id = #{bagId}
+  </select>
+
+  <select id="selectSingaporeAreaBuilding" resultType="com.siruiman.crosslogistics.model.SingaporeAreaBuilding">
+    SELECT sa_building_lat, sa_building_lng
+    FROM singapore_area_building
+    WHERE sa_zip_code = #{zipCode}
+  </select>
+</mapper>

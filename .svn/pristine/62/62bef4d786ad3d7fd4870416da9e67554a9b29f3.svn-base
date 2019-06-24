@@ -1,0 +1,185 @@
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+/*header start*/
+.container {
+    width: 100%;
+    height: 45px;
+    background-color: rgb(8, 135, 215);
+    border-bottom: 1px solid rgb(0, 112, 183);
+}
+
+.container .logo a {
+    float: left;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    padding-left: 20px;
+    line-height: 45px;
+    width: 200px;
+    background-color: rgb(0, 112, 183);
+}
+
+/* 打开左边导航 */
+.container .left-open {
+    height: 45px;
+    float: left;
+}
+
+
+.container .left-open i {
+    display: block;
+    color: rgb(255, 255, 255);
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    margin-top: 7px;
+    cursor: pointer;
+    background: 0px 0px no-repeat rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+.container .left-open i:hover {
+    background: rgba(255,255,255,0.3) url() 0 0 no-repeat;
+}
+.container .right{
+	background-color: rgba(0, 0, 0, 0);
+	float: right;
+}
+.container .layui-nav-item {
+    line-height: 45px;
+}
+
+.right .layui-nav-item .layui-nav-child{
+    right: -10px;
+    left:unset ;
+}
+/* header end */
+
+/* 左边导航栏 start */
+.layui-side {
+    width: 220px;
+    top: 0;
+    z-index: 1001;
+    top: 46px;
+}
+.layui-side-menu {
+    background-color: #393D49;
+    color: #fff;
+    box-shadow: 1px 0 2px 0 rgba(0,0,0,.05);
+}
+
+.layui-side-menu .layui-side-scroll {
+    width: 240px;
+}
+.layui-side-menu .layui-nav {
+    width: 220px;
+    margin-bottom: 50px;
+    /*background: 0 0;*/
+}
+
+/* 字体颜色 */
+/*.layui-nav .layui-nav-item a{
+    color: #fff;
+}
+.layui-nav .layui-nav-child a:hover{
+    color: rgba(255,255,255,0.7);
+}*/
+/* 一级菜单移入 */
+/*.layui-nav-tree .layui-nav-item a:hover {
+    background-color: #4E5465;
+}*/
+
+/* 图标 */
+.left-nav img{
+    width: 20px;
+    margin-right: 5px;
+}
+
+
+/* 左边导航栏 */
+
+
+/* 主体内容 start */
+
+.page-content {
+    position: absolute;
+    top: 46px;
+    right: 0;
+    bottom: 0px;
+    left: 221px;
+    overflow: hidden;
+    z-index: 1;
+
+}
+.page-content .tab {
+    height: 100%;
+    width: 100%;
+    background: #EFEEF0 0 0 no-repeat;
+    margin: 0px;
+    position: relative;
+}
+.page-content .tab .layui-tab-title{
+    left: 40px;
+    margin-right: 40px;
+    background: #fff;
+}
+
+.page-content .tab .layui-tab-title .layui-this{
+    background: #f6f6f6!important;
+}
+
+.page-content .operating{
+    position: absolute;
+    width: 40px;
+    top:0px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 40px;
+    font-size: 16px;
+    border-right: 1px solid #f6f6f6;
+    box-sizing: border-box;
+}
+.page-content .operating .layui-nav-more{
+    display: none;
+}
+.page-content .operating .layui-nav-item .layui-nav-child{
+
+    top: 45px;
+}
+.page-content .operating .layui-nav .layui-nav-item{
+   height: 40px;
+}
+.page-content .operating .layui-nav{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background: #fff;
+}
+.page-content .layui-tab-content {
+    /*position: absolute;*/
+    /*top: 42px;*/
+    /*bottom: 0px;*/
+    height:100%;
+    width: 100%;
+    background: #fff 0 0 no-repeat;
+    padding: 0px;
+    overflow: hidden;
+}
+.page-content .layui-tab-content .layui-tab-item {
+    width: 100%;
+    height: 100%;
+}
+.page-content .layui-tab-content .layui-tab-item iframe {
+    width: 100%;
+    height: 100%;
+}
+/* 主体内容 end */

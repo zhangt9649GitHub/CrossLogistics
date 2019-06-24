@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.StaffGroupAccessMapper" >
+
+  <select id="selectStaffGroupAll" resultType="com.siruiman.crosslogistics.model.StaffGroupAccess">
+    SELECT staff_group_id, staff_group_name, add_time
+    FROM staff_group
+    WHERE 1=1
+    <if test="staffGroupId != 0">
+      AND staff_group_id = #{staffGroupId}
+    </if>
+  </select>
+
+  <select id="selectStaffAccess" resultType="com.siruiman.crosslogistics.model.StaffAccess">
+    SELECT b.sa_id, b.sa_name
+    FROM staff_group_access a
+    LEFT JOIN staff_access b
+    ON a.sa_id = b.sa_id
+    WHERE a.staff_group_id = #{staffGroupId}
+  </select>
+
+  <select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM staff_group
+    WHERE 1=1
+    <if test="staffGroupId != 0">
+      AND a.staff_group_id = #{staffGroupId}
+    </if>
+  </select>
+
+  <insert id="addStaffGroup" parameterType="com.siruiman.crosslogistics.model.dto.StaffGroupDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="staffGroupDto.staffGroupId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      staff_group(staff_group_name, add_time, admin_uid)
+    VALUES
+      (#{staffGroupDto.staffGroupName}, now(), #{staffGroupDto.adminUid})
+  </insert>
+
+  <insert id="addStaffGroupAccess" parameterType="com.siruiman.crosslogistics.model.dto.StaffGroupDto">
+    INSERT INTO
+      staff_group_access(staff_group_id, sa_id, add_time, admin_uid)
+    VALUES
+    <foreach collection="staffGroupDto.saIds" item="saId" separator=",">
+      (#{staffGroupDto.staffGroupId}, #{saId}, now(), #{staffGroupDto.adminUid})
+    </foreach>
+  </insert>
+
+  <resultMap id="staffGroupDto" type="com.siruiman.crosslogistics.model.dto.StaffGroupDto">
+    <id column="staff_group_id" jdbcType="INTEGER" property="staffGroupId" />
+    <result column="staff_group_name" jdbcType="VARCHAR" property="staffGroupName"/>
+    <collection property="saIds" ofType="java.lang.Integer">
+      <id column="sa_id" jdbcType="INTEGER" property="saId" />
+    </collection>
+  </resultMap>
+  <select id="selectEditStaffGroup" resultMap="staffGroupDto">
+    SELECT a.staff_group_id, a.staff_group_name, c.sa_id
+    FROM staff_group a
+    LEFT JOIN staff_group_access b
+    ON a.staff_group_id = b.staff_group_id
+    LEFT JOIN staff_access c
+    ON b.sa_id = c.sa_id
+    WHERE a.staff_group_id = #{staffGroupId}
+  </select>
+
+  <update id="editStaffGroup" parameterType="com.siruiman.crosslogistics.model.dto.StaffGroupDto">
+    UPDATE staff_group
+    SET staff_group_name = #{staffGroupDto.staffGroupName}
+    WHERE staff_group_id = #{staffGroupDto.staffGroupId}
+  </update>
+
+  <delete id="deleteStaffGroupAccess" parameterType="com.siruiman.crosslogistics.model.dto.StaffGroupDto">
+    DELETE FROM staff_group_access
+    WHERE staff_group_id = #{staffGroupDto.staffGroupId}
+  </delete>
+
+  <delete id="deleteStaffGroup">
+    DELETE FROM staff_group
+    WHERE staff_group_id = #{staffGroupId}
+  </delete>
+
+  <select id="selectStaffGroupByStaff" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM staff
+    WHERE staff_group_id = #{staffGroupId}
+  </select>
+</mapper>

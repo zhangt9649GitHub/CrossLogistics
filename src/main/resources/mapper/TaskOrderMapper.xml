@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.TaskOrderMapper" >
+
+  <select id="selectTaskOrderAll" resultType="com.siruiman.crosslogistics.model.TaskOrder" parameterType="com.siruiman.crosslogistics.model.dto.TaskOrderDto">
+    SELECT a.task_order_id, a.task_id, a.order_number, a.name, (a.money + a.add_money) AS totalMoney, (a.integral + a.add_integral) AS totalIntegral, a.state,
+            a.singapore_area_id, b.singapore_area_name, b.singapore_area_atitude_longitude, DATE_FORMAT(a.create_time,'%Y-%m-%d %H:%i:%s') AS createTime, a.type, a.comment
+    FROM task_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE 1=1
+    <if test="taskOrderDto.startTime != null and taskOrderDto.startTime != ''">
+      AND a.create_time &gt;= #{taskOrderDto.startTime}
+    </if>
+    <if test="taskOrderDto.endTime != null and taskOrderDto.endTime != ''">
+      AND a.create_time &lt;= #{taskOrderDto.endTime}
+    </if>
+    <if test="taskOrderDto.state != 0">
+      AND a.state = #{taskOrderDto.state}
+    </if>
+    <if test="taskOrderDto.singaporeAreaId != 0">
+      AND a.singapore_area_id = #{taskOrderDto.singaporeAreaId}
+    </if>
+    <if test="taskOrderDto.type != null and taskOrderDto.type != ''">
+      AND a.type = #{taskOrderDto.type}
+    </if>
+    <if test="taskOrderDto.search != null and taskOrderDto.search != ''">
+      AND CONCAT_WS(a.order_number, a.name) like '%${taskOrderDto.search}%'
+    </if>
+    ORDER BY a.create_time DESC
+  </select>
+
+  <select id="count" resultType="java.lang.Integer" parameterType="com.siruiman.crosslogistics.model.dto.TaskOrderDto">
+    SELECT COUNT(1)
+    FROM task_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    WHERE 1=1
+    <if test="taskOrderDto.search != null and taskOrderDto.search != ''">
+      AND CONCAT_WS(a.order_number, a.name) like '%${taskOrderDto.search}%'
+    </if>
+    <if test="taskOrderDto.startTime != null and taskOrderDto.startTime != ''">
+      AND a.create_time &lt;= #{taskOrderDto.startTime}
+    </if>
+    <if test="taskOrderDto.endTime != null and taskOrderDto.endTime != ''">
+      AND a.create_time &gt;= #{taskOrderDto.endTime}
+    </if>
+    <if test="taskOrderDto.state != 0">
+      AND a.state = #{taskOrderDto.state}
+    </if>
+    <if test="taskOrderDto.singaporeAreaId != 0">
+      AND a.singapore_area_id = #{taskOrderDto.singaporeAreaId}
+    </if>
+    <if test="taskOrderDto.type != null and taskOrderDto.type != ''">
+      AND a.type = #{taskOrderDto.type}
+    </if>
+  </select>
+
+  <resultMap id="taskOrderDetail" type="com.siruiman.crosslogistics.model.TaskOrderDetail">
+    <id column="task_order_id" jdbcType="INTEGER" property="taskOrderId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="totalMoney" jdbcType="FLOAT" property="totalMoney"/>
+    <result column="totalIntegral" jdbcType="INTEGER" property="totalIntegral"/>
+    <result column="add_money" jdbcType="FLOAT" property="addMoney"/>
+    <result column="add_integral" jdbcType="INTEGER" property="addIntegral"/>
+    <result column="state" jdbcType="INTEGER" property="state"/>
+    <result column="singapore_area_name" jdbcType="VARCHAR" property="singaporeAreaName"/>
+    <result column="singapore_area_atitude_longitude" jdbcType="VARCHAR" property="singaporeAreaAtitudeLongitude"/>
+    <result column="type" jdbcType="VARCHAR" property="type"/>
+    <collection property="taskOrderDeliveryRoutes" ofType="com.siruiman.crosslogistics.model.TaskOrderBag">
+      <id column="bag_id" jdbcType="INTEGER" property="bagId" />
+      <result column="bag_number" jdbcType="VARCHAR" property="bagNumber" />
+      <result column="length" jdbcType="FLOAT" property="length" />
+      <result column="width" jdbcType="FLOAT" property="width" />
+      <result column="high" jdbcType="FLOAT" property="high" />
+      <result column="load" jdbcType="FLOAT" property="load" />
+    </collection>
+    <collection property="taskOrderBags" ofType="com.siruiman.crosslogistics.model.TaskOrderDeliveryRoute">
+      <id column="todr_id" jdbcType="INTEGER" property="todrId" />
+      <result column="location" jdbcType="VARCHAR" property="location" />
+      <result column="lat_lng" jdbcType="VARCHAR" property="latLng" />
+      <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+      <result column="sequence" jdbcType="VARCHAR" property="sequence" />
+    </collection>
+  </resultMap>
+  <select id="selectTaskOrderDetail" resultMap="taskOrderDetail">
+    SELECT a.task_order_id, a.order_number, a.name, (a.money + a.add_money) AS totalMoney, (a.integral + a.add_integral) AS totalIntegral, a.add_money,
+            a.add_integral, a.state,a.type, b.singapore_area_name, b.singapore_area_atitude_longitude, d.bag_id, d.bag_number, d.length, d.width, d.high, d.load, e.todr_id,
+            e.location, e.lat_lng, e.goods_num, e.sequence
+    FROM task_order a
+    LEFT JOIN singapore_area b
+    ON a.singapore_area_id = b.singapore_area_id
+    LEFT JOIN task_order_bag c
+    ON a.task_order_id = c.task_order_id
+    LEFT JOIN bag d
+    ON c.bag_id = d.bag_id
+    LEFT JOIN task_order_delivery_route e
+    ON a.task_order_id = e.task_order_id
+    WHERE a.task_order_id = #{taskOrderId}
+  </select>
+</mapper>

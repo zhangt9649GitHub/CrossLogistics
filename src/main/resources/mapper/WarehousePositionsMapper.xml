@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.WarehousePositionsMapper" >
+  <resultMap id="BaseResultMap" type="com.siruiman.crosslogistics.model.WarehousePositions" >
+    <id column="wp_id" property="wpId" jdbcType="INTEGER" />
+    <result column="wp_number" property="wpNumber" jdbcType="VARCHAR" />
+    <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="wp_state" property="wpState" jdbcType="INTEGER" />
+    <result column="wp_head" property="wpHead" jdbcType="INTEGER" />
+    <result column="wp_capacity" property="wpCapacity" jdbcType="DOUBLE" />
+    <result column="wp_current_capacity" property="wpCurrentCapacity" jdbcType="DOUBLE" />
+    <result column="wp_use" property="wpUse" jdbcType="VARCHAR" />
+    <result column="sa_id" property="saId" jdbcType="INTEGER" />
+    <result column="rally_point_id" property="rallyPointId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from warehouse_positions
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.siruiman.crosslogistics.model.WarehousePositions" >
+    <selectKey resultType="java.lang.Integer" keyProperty="wpId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into warehouse_positions (wp_number, warehouse_id, wp_state, 
+      wp_head, wp_capacity, wp_current_capacity, 
+      wp_use)
+    values (#{wpNumber,jdbcType=VARCHAR}, #{warehouseId,jdbcType=INTEGER}, #{wpState,jdbcType=INTEGER}, 
+      #{wpHead,jdbcType=INTEGER}, #{wpCapacity,jdbcType=DOUBLE}, #{wpCurrentCapacity,jdbcType=DOUBLE}, 
+      #{wpUse,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.siruiman.crosslogistics.model.WarehousePositions" >
+    update warehouse_positions
+    set wp_number = #{wpNumber,jdbcType=VARCHAR},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      wp_state = #{wpState,jdbcType=INTEGER},
+      wp_head = #{wpHead,jdbcType=INTEGER},
+      wp_capacity = #{wpCapacity,jdbcType=DOUBLE},
+      wp_current_capacity = #{wpCurrentCapacity,jdbcType=DOUBLE},
+      wp_use = #{wpUse,jdbcType=VARCHAR}
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select wp_id, wp_number, warehouse_id, wp_state, wp_head, wp_capacity, wp_current_capacity,
+    wp_use
+    from warehouse_positions
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAllByWarehouseId" resultMap="BaseResultMap" parameterType="int">
+    select wp_id, wp_number, warehouse_id, wp_state, wp_head, wp_capacity, wp_current_capacity,
+    wp_use
+    from warehouse_positions where  warehouse_id = #{warehouseId}
+  </select>
+  <select id="selectCountByWarehouseId" resultType="java.lang.Integer">
+    select count(wp_id) from  warehouse_positions
+    where warehouse_id = #{warehouse_id} and del_state = 1
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="com.siruiman.crosslogistics.model.WarehousePositions">
+    select  wp.wp_id, wp.wp_number, wp.warehouse_id, wp.wp_state, wp.wp_head, wp.wp_capacity, wp.wp_current_capacity,
+    wp.wp_use, wh.warehouse_name as warehouseName from warehouse_positions wp
+    LEFT join warehouse wh   on wh.warehouse_id = wp.warehouse_id
+    where wp.del_state =  1
+    <if test=" warehouseId != ''and warehouseId != null">
+      AND wh.warehouse_id =#{warehouseId,jdbcType=INTEGER}
+    </if>
+    <if test="wpNumber != ''and wpNumber != null">
+      AND wp.wp_number like "%"#{wpNumber,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="wpUse != ''and wpUse != null">
+      AND wp.wp_use = #{wpUse,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.siruiman.crosslogistics.model.WarehousePositions">
+    select  count(wp.wp_id) from warehouse_positions wp
+    LEFT join warehouse wh   on wh.warehouse_id = wp.warehouse_id
+    where wp.del_state =  1
+    <if test=" warehouseId != ''and warehouseId != null">
+      AND wh.warehouse_id =#{warehouseId,jdbcType=INTEGER}
+    </if>
+    <if test="wpNumber != ''and wpNumber != null">
+      AND wp.wp_number like "%"#{wpNumber,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="wpUse != ''and wpUse != null">
+      AND wp.wp_use = #{wpUse,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <!--删除仓位只做逻辑删除
+    del_state = 2就是删除状态 默认正常状态是1
+  -->
+  <update id="deleteById" parameterType="int">
+    update warehouse_positions
+    set
+      del_state = 2
+    where wp_id = #{wpId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectWarehousePositionsbyWpNumber" resultMap="BaseResultMap">
+    select wp_id, wp_number, warehouse_id, wp_state, wp_head, wp_capacity, wp_current_capacity,
+    wp_use,del_state
+    from warehouse_positions
+    where wp_number = #{wpNumber,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectWpIdByWpNumber" resultType="int" parameterType="string">
+
+    select wp_id from warehouse_positions
+    where wp_number = #{wpNumber,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectWarehousePositionsbySaId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+     select wp_id, wp_number, warehouse_id, wp_state, wp_head, wp_capacity, wp_current_capacity,
+     wp_use,del_state,sa_id,rally_point_id
+    from warehouse_positions WHERE sa_id = #{saId}
+  </select>
+  <!--删除一个仓库下所有的仓位-->
+  <update id="deleteByWarehouseId" parameterType="int">
+    update warehouse_positions
+    set del_state = 2
+    where warehouse_id =#{warehouseId}
+  </update>
+
+</mapper>

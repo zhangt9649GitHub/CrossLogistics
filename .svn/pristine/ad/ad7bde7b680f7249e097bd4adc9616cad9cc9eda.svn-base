@@ -1,0 +1,71 @@
+
+
+/* 个人信息 start */
+.section-main{
+	display: flex;
+    /*border-bottom: 1px solid #E9E9E9;	*/
+}
+
+.aside-left{
+	flex: 1.2;
+	padding-bottom: 10px;
+}
+.aside-right{
+	flex: 0.8;
+	padding-bottom: 10px;
+}
+.aside-left>div{
+	display: flex;
+}
+.aside-left img{
+	width: 150px;
+	height: 150px;
+}
+.aside-left .row{
+	flex: 1;
+	box-sizing: border-box;
+	padding:0 15px;
+}
+
+.aside-left .row .color-1{
+	color:#666;
+}
+
+.aside-left .row .color-2{
+	color:#999;
+}
+.aside-left .row .font{
+	font-weight: 700;
+	font-size:18px;
+
+}
+.aside-left .row .flex{
+	display: flex;
+	align-items:flex-end;
+	margin-bottom: 10px;
+}
+.aside-left .row .flex>div{
+	flex:1;
+	padding:0px 5px;
+	box-sizing: border-box; 
+}
+.aside-left .row .center{
+	text-align: center;
+}
+.aside-left .row .flex .layui-btn{
+	opacity: 0;
+}
+
+/* 个人信息 end */
+
+
+
+/* 选项卡 start */
+
+.open-tab{
+	margin-top: 50px;
+}
+.open-tab .layui-tab-content{
+	height: 350px;
+}
+/* 选项卡 end */

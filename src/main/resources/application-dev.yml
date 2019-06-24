@@ -1,0 +1,136 @@
+server:
+  port: 8081
+info:
+  api-doc: /swagger-ui.html
+spring:
+  application:
+    name: crosslogistics
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://rm-bp1i1x1kx2lhwyx01eo.mysql.rds.aliyuncs.com:3306/cross_logistics_db?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=true
+    #url: jdbc:mysql://localhost:3306/toptoken_db?useUnicode=true&characterEncoding=utf8
+    username: cross_logistics
+    password: cross_logistics_123456
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      driver-class-name: com.mysql.jdbc.Driver
+  freemarker:
+
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    prefix:
+    suffix: .ftl
+    template-loader-path: classpath:/templates/
+    number_format: #
+  freemarkertemplate_update_delay: 0
+  thymeleaf:
+    cache: false
+    enabled: false
+  aop:
+    proxy-target-class:
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+mybatis:
+  type-aliases-package: com.siruiman.crosslogistics.model
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+#  level.com.siruiman.crosslogistics.mapper: debug
+  level.com.siruiman.crosslogistics: debug
+  #logging:
+  # 当前项目生成指定日志名的日志文件，文件名前添加完整路径，则在指定路径下生成日志
+  #  file:
+  # 指定路径，则在该路径下生成默认名称为 spring.log 的日志文件
+  #  path:
+  # 指定日志输出的等级 trace<debug<info<warn<error，默认级别为 info
+#  level:
+login-overdue-time: 7200
+
+
+
+
+
+########################################################
+###freemarker 对应.html页面配置
+########################################################
+
+
+
+#pagehelper分页插件配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params=count: countSql
+
+#设置连接总数
+http:
+  maxTotal: 500
+  #设置每个主机最大的并发数
+  defaultMaxPerRoute: 100
+  #设置创建连接的最长时间
+  connectTimeout: 2000
+  #从连接池中获取到连接的最长时间
+  connectionRequestTimeout: 500
+  #数据传输的最长时间
+  socketTimeout: 6000
+  #空闲时间(用于定期清理空闲连接)
+  maxIdleTime: 1
+
+
+###########################################
+###设置订单时间天数
+###########################################
+generateOrder.timeLimitCar: 7
+generateOrder.timeLimitTruck: 7
+
+
+spring.servlet.multipart.max-file-size : 100MB
+spring.servlet.multipart.max-request-size : 1000MB
+
+# 从池中获取的连接是否默认处于只读模式
+spring.datasource.hikari.read-only : false
+# 等待来自池的连接的最大毫秒数 如果小于250毫秒，则被重置回30秒
+spring.datasource.hikari.connection-timeout : 60000
+# 连接允许在池中闲置的最长时间 如果idleTimeout+1秒>maxLifetime 且 maxLifetime>0，则会被重置为0（代表永远不会退出）；
+# 如果idleTimeout!=0且小于10秒，则会被重置为10秒
+spring.datasource.hikari.idle-timeout : 60000
+# 连接将被测试活动的最大时间量 如果小于250毫秒，则会被重置回5秒
+spring.datasource.hikari.validation-timeout : 3000
+# 池中连接最长生命周期 如果不等于0且小于30秒则会被重置回30分钟
+spring.datasource.hikari.max-lifetime : 60000
+spring.datasource.hikari.login-timeout : 5
+# 池中最大连接数，包括闲置和使用中的连接
+# 如果maxPoolSize小于1，则会被重置。当minIdle<=0被重置为DEFAULT_POOL_SIZE则为10;如果minIdle>0则重置为minIdle的值
+spring.datasource.hikari.maximum-pool-size : 60
+# 池中维护的最小空闲连接数
+# minIdle<0或者minIdle>maxPoolSize,则被重置为maxPoolSize
+spring.datasource.hikari.minimum-idle : 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

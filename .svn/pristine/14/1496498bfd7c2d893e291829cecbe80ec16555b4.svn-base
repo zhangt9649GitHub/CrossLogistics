@@ -1,0 +1,1830 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="crosslogistics:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mqttclient/PushCallBack.java" description="if (payload.contains(&quot;c=NL&quot;)){" line="47" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="6d16f8f9-40b7-44a0-b10c-9f973d0bc003" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/CustomRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/CustomRealm.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/target/" />
+    <ignored path=".idea/" />
+    <ignored path=".mvn/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/crosslogistics$CrosslogisticsApplication.ic" NAME="CrosslogisticsApplication Coverage Results" MODIFIED="1551748607540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="crosslogistics" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="StatisticsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/StatisticsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-837">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LogisticInfoControlller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/LogisticInfoControlller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="65">
+              <caret line="88" column="25" lean-forward="true" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScheduledApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/ScheduledApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StaticConfigUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/StaticConfigUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="65" column="50" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CrosslogisticsApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/CrosslogisticsApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MultipleFileUploadController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/MultipleFileUploadController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-45">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StaticController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/config/StaticController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index/index.ftl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1386" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShiroConfig.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/ShiroConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CustomRealm.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/CustomRealm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="45" column="63" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>appUserInfo</find>
+      <find>edit/abnormalGoodsEdit</find>
+      <find>put</find>
+      <find>分配集结</find>
+      <find>cron</find>
+      <find>http</find>
+      <find>SGDtoCNYEXchangeFrate</find>
+      <find>selectCarOrderIds</find>
+      <find>getCopyWriterById</find>
+      <find>抢单</find>
+      <find>systemParameterSettingIndex</find>
+      <find>copybookSettings</find>
+      <find>open</find>
+      <find>tid</find>
+      <find>客户端连接成功</find>
+      <find>权限</find>
+      <find>ScheduledConfig</find>
+      <find>客户端</find>
+      <find>like</find>
+      <find>Statistics</find>
+      <find>请填写用户联系地址</find>
+      <find>sheet</find>
+      <find>model.setAt</find>
+      <find>m</find>
+      <find>查询货物</find>
+      <find>map</find>
+      <find>货袋详情</find>
+      <find>货物详情</find>
+      <find>insert</find>
+      <find>add</find>
+    </findStrings>
+    <dirStrings>
+      <dir>E:\javaworkspace\crosslogistics\src\main\java\com\siruiman\crosslogistics\mapper</dir>
+      <dir>E:\javaworkspace\crosslogistics\src\main\java\com\siruiman\crosslogistics\shiro</dir>
+      <dir>E:\javaworkspace\crosslogistics</dir>
+      <dir>E:\javaworkspace\crosslogistics\src\main\java\com\siruiman\crosslogistics\controller</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/BagMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/warehouseManagementList/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/Map2Object.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/MapUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/BagSericeImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/BagMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/Bag.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/PrintGoodsDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/PrintGoods.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/GoodsPrintForm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/GoodsPrintFormService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/GoodsPrintForm.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/GoodsPrintFormMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/GoodsPrintFormMid.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/GoodsPrintFormMidService.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/GoodsPrintFormMidMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/GoodsPrintFormMidServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/GoodsPrintFormServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/GoodsPrintFormMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/BagSerivce.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/GoodsDetailsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/GoodsDetailsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/GoodsDetailsServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/GoodsDetailsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/enums/ZwCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/ChinaAreaMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/WarehouseMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/WarehousePositionsMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/WarehousePositionsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/WithdrawApplicationMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/ResultsMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/StaticConfigUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/WXPayController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/AliPayController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/model/FinanceMoneyFlow.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/FinanceMoneyFlowMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/enums/HtCode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/GoodsPrintFormMidMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/official_public_footer.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/UIController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/official_public_header.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/official/aboutus.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/official/index.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/official/js/logistics.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/official/logistics.ftl" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/official/js/index.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/kjwl/aboutus.ftl" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/NETSPayController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/LogisticInfoControlller.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/CustomRealm.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="E:\maven\repository" />
+        <option name="mavenHome" value="E:/maven/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="E:\maven\apache-maven-3.3.9\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="crosslogistics" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/src/main/resources/static/wangEditor/example/demo/in-react/package.json" />
+      <path value="$PROJECT_DIR$/src/main/resources/static/wangEditor/example/demo/in-vue/package.json" />
+      <path value="$PROJECT_DIR$/src/main/resources/static/wangEditor/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="38" />
+    <option name="y" value="124" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <flattenPackages ProjectPane="false" />
+      <showMembers ProjectPane="false" />
+      <hideEmptyPackages ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="true" />
+      <sortByType ProjectPane="false" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="shiro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="crosslogistics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="crosslogistics" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="ToolWindowFind.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.mvn" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="Lombok plugin" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\templates" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.siruiman.crosslogistics.mapper" />
+      <recent name="com.siruiman.crosslogistics.service" />
+      <recent name="com.siruiman.crosslogistics.model.dto" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.siruiman.crosslogistics.zhangzhanwei" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\templates\warehouseManagementList" />
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\templates" />
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\static\official" />
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\templates\official" />
+      <recent name="E:\javaworkspace\crosslogistics\src\main\resources\mapper" />
+    </key>
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 446 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+        <path>
+          <item name="Found 446 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="crosslogistics" type="c588b436:RestServiceStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2924">E:\javaworkspace\crosslogistics\src\main\resources\templates\index\index.ftl</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.CrosslogisticsApplication">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="generate" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="mybatis-generator:generate" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+    </configuration>
+    <configuration name="CrosslogisticsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="crosslogistics" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.siruiman.crosslogistics.CrosslogisticsApplication" />
+      <option name="DEBUG_MODE" value="true" />
+      <option name="HIDE_BANNER" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <RunnerSettings RunnerId="Debug with VisualVM">
+        <option name="visualVMId" value="700383045288" />
+      </RunnerSettings>
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Maven.generate" />
+      <item itemvalue="Spring Boot.CrosslogisticsApplication" />
+    </list>
+  </component>
+  <component name="SpringBeansView">
+    <option name="showImplicitBeans" value="false" />
+    <option name="showInfrastructureBeans" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\javaworkspace\crosslogistics" />
+          <option name="myCopyRoot" value="E:\javaworkspace\crosslogistics" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\javaworkspace\crosslogistics\.idea" />
+          <option name="myCopyRoot" value="E:\javaworkspace\crosslogistics\.idea" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="E:\javaworkspace\crosslogistics" />
+          <option name="myCopyRoot" value="E:\javaworkspace\crosslogistics" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d16f8f9-40b7-44a0-b10c-9f973d0bc003" name="Default" comment="" />
+      <created>1546853474513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1546853474513</updated>
+      <workItem from="1546853476575" duration="12434000" />
+      <workItem from="1546910987278" duration="13238000" />
+      <workItem from="1547519413102" duration="117837000" />
+      <workItem from="1549959566317" duration="49222000" />
+      <workItem from="1550571757025" duration="25428000" />
+      <workItem from="1551513619567" duration="17541000" />
+      <workItem from="1551661099046" duration="9341000" />
+      <workItem from="1551683168012" duration="12800000" />
+      <workItem from="1551747413964" duration="21686000" />
+      <workItem from="1551771119022" duration="9976000" />
+      <workItem from="1551833770811" duration="8542000" />
+      <workItem from="1551844931921" duration="5716000" />
+      <workItem from="1551856911525" duration="10991000" />
+      <workItem from="1551920442467" duration="27123000" />
+      <workItem from="1552011846445" duration="34000" />
+      <workItem from="1552012249829" duration="1033000" />
+      <workItem from="1552014693572" duration="442000" />
+      <workItem from="1552015634431" duration="150000" />
+      <workItem from="1552022223506" duration="102000" />
+      <workItem from="1552022627739" duration="9000" />
+      <workItem from="1552024751681" duration="14476000" />
+      <workItem from="1552266175461" duration="7158000" />
+      <workItem from="1552274585504" duration="326000" />
+      <workItem from="1552275425086" duration="12000" />
+      <workItem from="1552297423617" duration="132000" />
+      <workItem from="1552352715198" duration="8602000" />
+      <workItem from="1552386630538" duration="2961000" />
+      <workItem from="1552438560861" duration="11397000" />
+      <workItem from="1552456202961" duration="526000" />
+      <workItem from="1552457025533" duration="406000" />
+      <workItem from="1552458697987" duration="653000" />
+      <workItem from="1552471451675" duration="118000" />
+      <workItem from="1552471627831" duration="320000" />
+      <workItem from="1552472444487" duration="648000" />
+      <workItem from="1552525053734" duration="1964000" />
+      <workItem from="1552527129716" duration="27160000" />
+      <workItem from="1552611430569" duration="15490000" />
+      <workItem from="1552634486775" duration="8995000" />
+      <workItem from="1552700932490" duration="7963000" />
+      <workItem from="1552871048176" duration="9053000" />
+      <workItem from="1552880230949" duration="6568000" />
+      <workItem from="1552892020972" duration="8781000" />
+      <workItem from="1552957638531" duration="12110000" />
+      <workItem from="1553044902295" duration="1807000" />
+      <workItem from="1553051606812" duration="622000" />
+      <workItem from="1553059926148" duration="70000" />
+      <workItem from="1553064413227" duration="7896000" />
+      <workItem from="1553130196675" duration="10388000" />
+      <workItem from="1553147783277" duration="13360000" />
+      <workItem from="1553161639643" duration="1757000" />
+      <workItem from="1553216406742" duration="2367000" />
+      <workItem from="1553221022156" duration="2083000" />
+      <workItem from="1553238432543" duration="3179000" />
+      <workItem from="1553248577594" duration="1276000" />
+      <workItem from="1553393400324" duration="9441000" />
+      <workItem from="1553405817054" duration="9445000" />
+      <workItem from="1553475818128" duration="3542000" />
+      <workItem from="1553507477047" duration="2048000" />
+      <workItem from="1553568559697" duration="17350000" />
+      <workItem from="1553648492154" duration="10283000" />
+      <workItem from="1553665101724" duration="15997000" />
+      <workItem from="1553735240834" duration="1847000" />
+      <workItem from="1553739556546" duration="17982000" />
+      <workItem from="1553766260743" duration="3189000" />
+      <workItem from="1553821271829" duration="16637000" />
+    </task>
+    <task id="LOCAL-00223">
+      <created>1553414690824</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1553414690824</updated>
+    </task>
+    <task id="LOCAL-00224">
+      <created>1553584658255</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1553584658256</updated>
+    </task>
+    <task id="LOCAL-00225">
+      <created>1553585123503</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1553585123510</updated>
+    </task>
+    <task id="LOCAL-00226">
+      <created>1553586820680</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1553586820680</updated>
+    </task>
+    <task id="LOCAL-00227">
+      <created>1553649156615</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1553649156616</updated>
+    </task>
+    <task id="LOCAL-00228">
+      <created>1553653331238</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1553653331238</updated>
+    </task>
+    <task id="LOCAL-00229">
+      <created>1553653381686</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1553653381686</updated>
+    </task>
+    <task id="LOCAL-00230">
+      <created>1553653431499</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1553653431499</updated>
+    </task>
+    <task id="LOCAL-00231">
+      <created>1553653475072</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1553653475072</updated>
+    </task>
+    <task id="LOCAL-00232">
+      <created>1553653985151</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1553653985151</updated>
+    </task>
+    <task id="LOCAL-00233">
+      <created>1553677195076</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1553677195077</updated>
+    </task>
+    <task id="LOCAL-00234">
+      <created>1553677375532</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1553677375532</updated>
+    </task>
+    <task id="LOCAL-00235">
+      <created>1553677860286</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1553677860286</updated>
+    </task>
+    <task id="LOCAL-00236">
+      <created>1553678765103</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1553678765103</updated>
+    </task>
+    <task id="LOCAL-00237">
+      <created>1553678961768</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1553678961768</updated>
+    </task>
+    <task id="LOCAL-00238">
+      <created>1553679210430</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1553679210430</updated>
+    </task>
+    <task id="LOCAL-00239">
+      <created>1553679346209</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1553679346209</updated>
+    </task>
+    <task id="LOCAL-00240">
+      <created>1553681683524</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1553681683524</updated>
+    </task>
+    <task id="LOCAL-00241">
+      <created>1553681888425</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1553681888425</updated>
+    </task>
+    <task id="LOCAL-00242">
+      <created>1553682088992</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1553682088992</updated>
+    </task>
+    <task id="LOCAL-00243">
+      <created>1553735599434</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1553735599436</updated>
+    </task>
+    <task id="LOCAL-00244">
+      <created>1553736416637</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1553736416637</updated>
+    </task>
+    <task id="LOCAL-00245">
+      <created>1553736860990</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1553736860990</updated>
+    </task>
+    <task id="LOCAL-00246">
+      <created>1553742784129</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1553742784129</updated>
+    </task>
+    <task id="LOCAL-00247">
+      <created>1553742891849</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1553742891849</updated>
+    </task>
+    <task id="LOCAL-00248">
+      <created>1553743091585</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1553743091585</updated>
+    </task>
+    <task id="LOCAL-00249">
+      <created>1553743349466</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1553743349466</updated>
+    </task>
+    <task id="LOCAL-00250">
+      <created>1553743957630</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1553743957630</updated>
+    </task>
+    <task id="LOCAL-00251">
+      <created>1553743979984</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1553743979984</updated>
+    </task>
+    <task id="LOCAL-00252">
+      <created>1553744465892</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1553744465892</updated>
+    </task>
+    <task id="LOCAL-00253">
+      <created>1553744700960</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1553744700960</updated>
+    </task>
+    <task id="LOCAL-00254">
+      <created>1553745914147</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1553745914147</updated>
+    </task>
+    <task id="LOCAL-00255">
+      <created>1553751640328</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1553751640328</updated>
+    </task>
+    <task id="LOCAL-00256">
+      <created>1553751739684</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1553751739684</updated>
+    </task>
+    <task id="LOCAL-00257">
+      <created>1553759354971</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1553759354971</updated>
+    </task>
+    <task id="LOCAL-00258">
+      <created>1553760790505</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1553760790505</updated>
+    </task>
+    <task id="LOCAL-00259">
+      <created>1553761366566</created>
+      <option name="number" value="00259" />
+      <option name="presentableId" value="LOCAL-00259" />
+      <option name="project" value="LOCAL" />
+      <updated>1553761366566</updated>
+    </task>
+    <task id="LOCAL-00260">
+      <created>1553763942350</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1553763942350</updated>
+    </task>
+    <task id="LOCAL-00261">
+      <created>1553764741588</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1553764741588</updated>
+    </task>
+    <task id="LOCAL-00262">
+      <created>1553764864737</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1553764864737</updated>
+    </task>
+    <task id="LOCAL-00263">
+      <created>1553767253694</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1553767253696</updated>
+    </task>
+    <task id="LOCAL-00264">
+      <created>1553768019360</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1553768019360</updated>
+    </task>
+    <task id="LOCAL-00265">
+      <created>1553768477027</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1553768477027</updated>
+    </task>
+    <task id="LOCAL-00266">
+      <created>1553826193357</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1553826193358</updated>
+    </task>
+    <task id="LOCAL-00267">
+      <created>1553829859618</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1553829859619</updated>
+    </task>
+    <task id="LOCAL-00268">
+      <created>1553829905796</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1553829905796</updated>
+    </task>
+    <task id="LOCAL-00269">
+      <created>1553830348856</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1553830348856</updated>
+    </task>
+    <task id="LOCAL-00270">
+      <created>1553840336091</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1553840336091</updated>
+    </task>
+    <task id="LOCAL-00271">
+      <created>1553843885557</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1553843885557</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 10h 43m 53s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 10h 53m 09s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 10h 58m 16s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 11h 01m 10s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 11h 02m 49s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BasicTest_test1 - 2019.03.13 at 11h 06m 18s.xml">
+      <configuration name="BasicTest.test1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockTest_lockTest - 2019.03.18 at 18h 30m 41s.xml">
+      <configuration name="LockTest.lockTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockTest_lockTest - 2019.03.19 at 09h 08m 30s.xml">
+      <configuration name="LockTest.lockTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="LockTest_lockTest - 2019.03.19 at 12h 52m 03s.xml">
+      <configuration name="LockTest.lockTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WXPayTest_test2 - 2019.03.21 at 10h 17m 59s.xml">
+      <configuration name="WXPayTest.test2" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="642171000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="14" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info anchor="right" id="RestServices" order="10" sideWeight="0.49338374" weight="0.38090128" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.09603004" side_tool="true" weight="0.4161074" />
+      <window_info anchor="right" id="Maven Projects" order="9" sideWeight="0.49887133" weight="0.3299356" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Tail" order="18" weight="0.32997763" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.49149337" weight="0.3299356" />
+      <window_info id="Structure" order="1" sideWeight="0.5044743" side_tool="true" weight="0.27306867" />
+      <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49716446" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6834764" weight="0.51901567" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49892703" weight="0.011185682" />
+      <window_info active="true" anchor="bottom" id="Messages" order="9" sideWeight="0.6582618" visible="true" weight="0.2147651" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" sideWeight="0.49946353" weight="0.32885906" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.6427039" weight="0.18008949" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.90396994" weight="0.45302013" />
+      <window_info anchor="bottom" id="Spring" order="7" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49552572" visible="true" weight="0.30150214" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="15" weight="0.3297062" />
+      <window_info anchor="right" id="Bean Validation" order="8" sideWeight="0.49716446" weight="0.3299356" />
+      <window_info id="Web" order="6" side_tool="true" weight="0.3299356" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4994641" weight="0.33333334" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Favorites" order="5" sideWeight="0.50071734" side_tool="true" weight="0.14270386" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="16" weight="0.32997763" />
+      <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32997763" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.50661623" side_tool="true" weight="0.38113007" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="14" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Tail" order="18" weight="0.32997763" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Spring" order="7" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info id="Image Layers" order="3" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.90396994" visible="true" weight="0.4161074" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49716446" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Web" order="6" side_tool="true" weight="0.3299356" />
+      <window_info id="Favorites" order="5" sideWeight="0.50071734" side_tool="true" weight="0.14270386" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49892703" weight="0.32885906" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Inspection Results" order="17" weight="0.32997763" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.09603004" side_tool="true" visible="true" weight="0.4161074" />
+      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.6582618" weight="0.2147651" />
+      <window_info anchor="right" id="RestServices" order="10" sideWeight="0.49338374" weight="0.38090128" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="15" weight="0.3297062" />
+      <window_info anchor="bottom" id="Java Enterprise" order="10" sideWeight="0.49946353" weight="0.32885906" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.6427039" weight="0.6409396" />
+      <window_info anchor="right" id="Maven Projects" order="9" sideWeight="0.49887133" weight="0.3299356" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49552572" visible="true" weight="0.30150214" />
+      <window_info anchor="right" id="Database" order="5" sideWeight="0.49149337" weight="0.3299356" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="16" weight="0.32997763" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49892703" weight="0.011185682" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Theme Preview" order="7" />
+      <window_info id="Structure" order="1" sideWeight="0.5044743" side_tool="true" weight="0.27306867" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.50661623" side_tool="true" weight="0.38113007" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4994641" weight="0.33333334" />
+      <window_info anchor="right" id="Bean Validation" order="8" sideWeight="0.49716446" weight="0.3299356" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6834764" weight="0.51901567" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/LogisticInfoControlller.java</url>
+          <line>80</line>
+          <properties class="com.siruiman.crosslogistics.controller.LogisticInfoControlller" method="getLogisticInfoCross">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>901</line>
+          <properties class="com.siruiman.crosslogistics.controller.PDABagController" method="bagDirect">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>976</line>
+          <properties class="com.siruiman.crosslogistics.controller.PDABagController">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>903</line>
+          <properties />
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>905</line>
+          <properties />
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>904</line>
+          <properties />
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>917</line>
+          <properties />
+          <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>918</line>
+          <properties />
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>921</line>
+          <properties />
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>922</line>
+          <properties />
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>981</line>
+          <properties />
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>983</line>
+          <properties />
+          <option name="timeStamp" value="219" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>985</line>
+          <properties />
+          <option name="timeStamp" value="220" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>986</line>
+          <properties />
+          <option name="timeStamp" value="221" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>987</line>
+          <properties />
+          <option name="timeStamp" value="222" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>995</line>
+          <properties />
+          <option name="timeStamp" value="223" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>1000</line>
+          <properties />
+          <option name="timeStamp" value="225" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java</url>
+          <line>1001</line>
+          <properties />
+          <option name="timeStamp" value="226" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog>
+          <selected-grouping-rules>
+            <grouping-rule id="XBreakpointGroupingByClassRule" />
+          </selected-grouping-rules>
+        </breakpoints-dialog>
+      </breakpoints-dialog>
+      <option name="time" value="227" />
+    </breakpoint-manager>
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/FinanceMoneyFlowServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/FinanceMoneyFlowMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/FinanceMoneyFlowMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="68" column="3" selection-start-line="68" selection-start-column="3" selection-end-line="68" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/WXPayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4004">
+          <caret line="208" column="64" selection-start-line="208" selection-start-column="64" selection-end-line="208" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/GoodsPrintFormMidMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/enums/GyCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="74" column="55" lean-forward="true" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/AliPayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="212" column="58" selection-start-line="212" selection-start-column="58" selection-end-line="212" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/enums/ZwCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="65" column="34" selection-start-line="65" selection-start-column="25" selection-end-line="65" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/GoodsPrintFormMidMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/GoodsPrintFormMidServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding>
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/WXPayUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-104">
+          <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-396" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/official/css/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/public_header.ftl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/noAuthority/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/jurisdiction_1/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="47" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/official_public_header.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="32" column="58" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/official/js/logistics.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="29" column="19" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/official/logistics.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/official/aboutus.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/official/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="81" column="30" lean-forward="true" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/official/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="26" column="60" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/UIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="25" />
+          <folding>
+            <element signature="e#36682#36683#0" expanded="true" />
+            <element signature="e#36728#36729#0" expanded="true" />
+            <element signature="e#38177#38178#0" expanded="true" />
+            <element signature="e#38222#38223#0" expanded="true" />
+            <element signature="e#38925#38926#0" expanded="true" />
+            <element signature="e#38968#38969#0" expanded="true" />
+            <element signature="e#40021#40022#0" expanded="true" />
+            <element signature="e#40062#40063#0" expanded="true" />
+            <element signature="e#41088#41089#0" expanded="true" />
+            <element signature="e#41133#41134#0" expanded="true" />
+            <element signature="e#42545#42546#0" expanded="true" />
+            <element signature="e#42588#42589#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/GoodsDetailsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="266" column="28" selection-start-line="266" selection-start-column="28" selection-end-line="266" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/GoodsDetailsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="875" column="67" selection-start-line="875" selection-start-column="67" selection-end-line="875" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/GoodsDetailsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="259" column="23" selection-start-line="259" selection-start-column="23" selection-end-line="259" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/GoodsDetailsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="702" column="84" selection-start-line="702" selection-start-column="84" selection-end-line="702" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/enums/HtCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/PDABagController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-309">
+          <caret line="1001" column="11" selection-start-line="1001" selection-start-column="11" selection-end-line="1001" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/config/AliPayConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/kjwl/index.ftl">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/kjwl/logistics.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="45" column="36" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/kjwl/aboutus.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="101" column="21" lean-forward="true" selection-start-line="101" selection-start-column="21" selection-end-line="101" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/official_public_footer.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/impl/LogisticInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="614" column="66" selection-start-line="614" selection-start-column="66" selection-end-line="614" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/mapper/LogisticInfoMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="124" column="1" lean-forward="true" selection-start-line="124" selection-start-column="1" selection-end-line="124" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/service/LogisticInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/NETSPayController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1165">
+          <caret line="137" column="33" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/UIKJWLController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-243">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/StatisticsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-837">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/LogisticInfoControlller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="88" column="25" lean-forward="true" selection-start-line="88" selection-start-column="25" selection-end-line="88" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/ScheduledApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/util/StaticConfigUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="65" column="50" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/CrosslogisticsApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/controller/MultipleFileUploadController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/config/StaticController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index/index.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1386" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/siruiman/crosslogistics/shiro/CustomRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="45" column="63" selection-start-line="45" selection-start-column="63" selection-end-line="45" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArquillianSettingsConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>crosslogistics:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>wxpay-sdk-0.0.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>crosslogistics</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>lib</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.siruiman.crosslogistics.mapper.AppUserMapper" >
+
+  <select id="selectAppUserAll" parameterType="com.siruiman.crosslogistics.model.dto.AppUserDto" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT app_user_id, `number`, user_name, head_pic, age, sex, mobile, password, email, actual_name, address,
+            zip_code, house_number, status, car_approve_status, truck_approve_status, DATE_FORMAT(add_time,'%Y-%m-%d %H:%i:%s') AS addTime
+    FROM app_user
+    WHERE status != '删除'
+    <if test="appUserDto.sex != null and appUserDto.sex != ''">
+      AND sex = #{appUserDto.sex}
+    </if>
+    <if test="appUserDto.userStatus != null and appUserDto.userStatus != ''">
+      <if test="appUserDto.userStatus == '普通用户'">
+        AND car_approve_status = '未认证'
+        AND truck_approve_status = '未认证'
+      </if>
+      <if test="appUserDto.userStatus == '小车用户'">
+        AND car_approve_status = '已认证'
+        AND truck_approve_status = '未认证'
+      </if>
+      <if test="appUserDto.userStatus == '货车用户'">
+        AND car_approve_status = '未认证'
+        AND truck_approve_status = '已认证'
+      </if>
+    </if>
+    <if test="appUserDto.search != null and appUserDto.search != ''">
+      AND CONCAT_WS(`number`, user_name, mobile) LIKE '%${appUserDto.search}%'
+    </if>
+    ORDER BY add_time DESC
+  </select>
+
+  <select id="count" parameterType="com.siruiman.crosslogistics.model.dto.AppUserDto" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM app_user
+    WHERE status != '删除'
+    <if test="appUserDto.sex != null and appUserDto.sex != ''">
+      AND sex = #{appUserDto.sex}
+    </if>
+    <if test="appUserDto.userStatus != null and appUserDto.userStatus != ''">
+      <if test="appUserDto.userStatus == '普通用户'">
+        AND car_approve_status = '未认证'
+        AND truck_approve_status = '未认证'
+      </if>
+      <if test="appUserDto.userStatus == '小车用户'">
+        AND car_approve_status = '已认证'
+        AND truck_approve_status = '未认证'
+      </if>
+      <if test="appUserDto.userStatus == '货车用户'">
+        AND car_approve_status = '未认证'
+        AND truck_approve_status = '已认证'
+      </if>
+    </if>
+    <if test="appUserDto.search != null and appUserDto.search != ''">
+      AND CONCAT_WS(`number`, user_name, mobile) LIKE '%${appUserDto.search}%'
+    </if>
+  </select>
+
+  <select id="selectAppUserDetail" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT `number`, user_name, head_pic, age, sex, mobile, email, actual_name, address, zip_code, house_number, car_approve_status, truck_approve_status
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <insert id="addAppUser" parameterType="com.siruiman.crosslogistics.model.dto.AddAppUserDto">
+    <selectKey resultType="java.lang.Integer" keyProperty="addAppUserDto.appUserId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    INSERT INTO
+      app_user(`number`, user_name, head_pic, age, sex, mobile, password, email, actual_name, address, zip_code, house_number, add_time)
+    VALUES
+      (#{addAppUserDto.number},#{addAppUserDto.userName},#{addAppUserDto.headPic},#{addAppUserDto.age},#{addAppUserDto.sex},#{addAppUserDto.mobile},
+      #{addAppUserDto.password},#{addAppUserDto.email},#{addAppUserDto.actualName},#{addAppUserDto.address},#{addAppUserDto.zipCode},#{addAppUserDto.houseNumber}, now())
+  </insert>
+
+  <update id="deleteAppUser">
+    delete from app_user
+    WHERE app_user_id = #{appUserId}
+  </update>
+
+  <update id="editAppUserStatus">
+    UPDATE app_user
+    SET status = #{status}
+    WHERE app_user_id = #{appUserId}
+  </update>
+
+  <select id="selectEditAppUserDetail" resultType="com.siruiman.crosslogistics.model.dto.AddAppUserDto">
+    SELECT `number`, user_name, head_pic, age, sex, mobile, password, email, actual_name, address, zip_code, house_number
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <update id="editAppUser" parameterType="com.siruiman.crosslogistics.model.dto.AddAppUserDto">
+    UPDATE app_user
+    SET user_name = #{addAppUserDto.userName}, head_pic = #{addAppUserDto.headPic}, age = #{addAppUserDto.age}, sex = #{addAppUserDto.sex}, mobile = #{addAppUserDto.mobile},
+        email = #{addAppUserDto.email}, actual_name = #{addAppUserDto.actualName}, address = #{addAppUserDto.address},
+        zip_code = #{addAppUserDto.zipCode}, house_number = #{addAppUserDto.houseNumber}
+    WHERE app_user_id = #{addAppUserDto.appUserId}
+  </update>
+
+  <select id="selectPsw" resultType="java.lang.String">
+    SELECT password
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectAppUserByNumber" resultType="com.siruiman.crosslogistics.model.AppUser" parameterType="java.lang.String">
+    SELECT app_user_id, `number`, user_name, age, sex, mobile, password, email, address,
+    zip_code, status
+    FROM app_user WHERE `number`=  #{number,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAppUserWalletAndOrderNum" resultType="com.siruiman.crosslogistics.model.AppUserWalletAndOrderNum">
+    SELECT commission_amount, integral
+    FROM app_user_wallet
+    WHERE app_user_id = #{appUserId}
+    AND user_type = #{userType}
+  </select>
+
+  <select id="totalOrderNumByCar" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+    AND (state = 5 OR state = 7)
+  </select>
+
+  <select id="totalOrderNumByTruck" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+    AND (state = 5 OR state = 7)
+  </select>
+
+  <select id="selectOrderRecordByCarUser" resultType="com.siruiman.crosslogistics.model.OrderRecord">
+    SELECT order_number, ifnull((money + add_money), money) AS totalMoney, ifnull((integral + add_integral), 0) AS totalIntegral,
+            DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS createTime, state
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="countOrderRecordByCarUser" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_car_order
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectOrderRecordByTruckUser" resultType="com.siruiman.crosslogistics.model.OrderRecord">
+    SELECT order_number, ifnull((money + add_money), money) AS totalMoney, ifnull((integral + add_integral), 0) AS totalIntegral,
+    DATE_FORMAT(create_time,'%Y-%m-%d %H:%i:%s') AS createTime, state
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="countOrderRecordByTruckUser" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM task_truck_order
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <update id="updateCarApproveStatus">
+    update app_user
+    SET car_approve_status = #{carApproveStatus}
+    where app_user_id = #{appUserId}
+  </update>
+  <update id="updateTruckApproveStatus">
+    update app_user
+    SET truck_approve_status = #{truckApproveStatus}
+    where app_user_id = #{appUserId}
+  </update>
+
+  <select id="selectAppUserByUserId" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT app_user_id,car_approve_status,truck_approve_status,`number`,actual_name
+    FROM app_user WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="selectUIdByNumber" resultType="java.lang.Integer" parameterType="java.lang.String">
+    SELECT app_user_id FROM app_user
+     WHERE `number` = #{number}
+  </select>
+
+  <select id="selectAppUserName" resultType="com.siruiman.crosslogistics.model.AppUser">
+    SELECT `number`, user_name, head_pic, age, sex, mobile, password, email, address, zip_code
+    FROM app_user
+    WHERE app_user_id = #{appUserId}
+  </select>
+
+  <select id="checkActualName" resultType="java.lang.Integer">
+    SELECT COUNT(1)
+    FROM app_user
+    WHERE actual_name = #{actualName}
+  </select>
+
+  <select id="selectCountAppUserName" resultType="java.lang.Integer">
+    SELECT COUNT(app_user_id)
+    FROM app_user
+    WHERE user_name = #{userName}
+  </select>
+
+</mapper>
